@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import classes from './header.module.css'
+
 export default function Header(){
     const user = {
         name: 'John',
@@ -14,29 +15,22 @@ export default function Header(){
     return <header className= {classes.header}>
         <div className={classes.container}>
             <Link to = '/' className = {classes.logo}>
-            Food Mine!
+                <img src = {`${process.env.PUBLIC_URL}icons/logo-hust.png`}/>
+                <span>Quán nhậu Bách Khoa</span>
+                
             </Link>
             <nav>
                 <ul>
-                    {user? (
-                    <li className={classes.menu_container}>
-                        <Link to = "/profile">{user.name}</Link>
-                        <div className={classes.menu}>
-                            <Link to = "/profile">Profile</Link>
-                            <Link to = "/orders">Orders</Link>
-                            <a onClick={logout}>Log out</a>
-                        </div>
-                    </li> 
-                    ) : (
-                        <Link to = "/login">Login</Link>
-                        
-                    )}
-                    <li>
-                        <Link to = "/cart">
-                            Cart
-                            {cart.totalCount > 0 && <span>{cart.totalCount}</span>}
-                        </Link>
+                    
+                    <li className={classes.contact}>
+                        <Link to = "/contact">CONTACT</Link>    
+                    </li>                    
+                    <li className={classes.infor}>
+                        <Link to = "/infor">INFORMATION</Link>
                     </li>
+                    <li className={classes.order}>
+                        <Link to = "/preorder">ORDER</Link>
+                    </li> 
                 </ul>
             </nav>
         </div>

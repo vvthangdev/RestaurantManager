@@ -8,7 +8,8 @@
 }
 
 .list li a{
-    height: 22.5rem;
+    margin-left: 70px;
+    height: 18.5rem;
     width: 20rem;
     border: 1px solid whitesmoke;
     border-radius: 1rem;
@@ -17,9 +18,25 @@
     flex-direction: column;
     overflow: hidden;
     color: #e72929;
+    background-color: #eee;
 }
 
 .image{
     object-fit: cover;
     height: 14.5rem;
+}
+.list li a .infor{
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 500;
+}
+.classify .name_classify{
+    font-size: 30px;
+    margin-left: 77px;
+    color: #af1313;
+    font-weight: 600;
+}
+.classify{
+    margin-top: 27px;
+    margin-bottom: 77px;
 }

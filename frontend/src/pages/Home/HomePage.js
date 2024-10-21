@@ -17,7 +17,7 @@ export default function HomePage(){
     const {foods} = state;
     useEffect(() => {
         getAll().then(foods => dispatch({type: "FOODS_LOADED", payload: foods}));
-    }, []);
+    }, []); //useEffect tranh goi API moi khi render, tranh anh huong render chinh
     return(
         <>
             <Thumbnails foods = {foods} />

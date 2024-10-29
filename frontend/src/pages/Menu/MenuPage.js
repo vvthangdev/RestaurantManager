@@ -3,6 +3,7 @@ import { getAll, search } from "../../services/foodService";
 import Thumbnails from "../../components/Thumbnails/Thumbnails";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
+import NotFound from "../../components/NotFound/NotFound";
 
 const initialState = {foods : []};
 const reducer = (state, action) => {
@@ -14,7 +15,7 @@ const reducer = (state, action) => {
     }
 }
 
-export default function HomePage(){
+export default function MenuPage(){
     const [state, dispatch] = useReducer(reducer, initialState);
     const {foods} = state;
     const {searchTerm} = useParams();
@@ -26,7 +27,8 @@ export default function HomePage(){
     return(
         <>
             <Search/>
-            <Thumbnails foods = {foods} />
+            {foods.length === 0 && <NotFound linkText="Reset Search"></NotFound>}
+            {foods.length !== 0 && <Thumbnails foods = {foods} />}
         </>
     );
 }

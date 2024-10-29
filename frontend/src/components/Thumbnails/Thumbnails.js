@@ -12,7 +12,7 @@ export default function Thumbnails({foods}){
                 <ul className={classes.list}>
                     {foods.map(food => (
                         <li key = {food.id}>
-                            <Link to = {`/food/${food.id}`}>
+                            <Link to = {`/menu/food/${food.id}`}>
                                 <img
                                     className={classes.image}
                                     src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}
@@ -39,7 +39,7 @@ export default function Thumbnails({foods}){
                 <ul className={classes.list}>
                     {foods.map(food => (
                         <li key = {food.id}>
-                            <Link to = {`/food/${food.id}`}>
+                            <Link to = {`/menu/food/${food.id}`}>
                                 <img
                                     className={classes.image}
                                     src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}
@@ -66,7 +66,7 @@ export default function Thumbnails({foods}){
                 <ul className={classes.list}>
                     {foods.map(food => (
                         <li key = {food.id}>
-                            <Link to = {`/food/${food.id}`}>
+                            <Link to = {`/menu/food/${food.id}`}>
                                 <img
                                     className={classes.image}
                                     src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}

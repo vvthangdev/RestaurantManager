@@ -8,7 +8,7 @@ export default function AppRoutes(){
         <Routes>
             <Route path="/" element={<HomePage/>} />
             <Route path="/contact" element={<Contact/>} />
-            <Route path="/order" element={<Order/>} />
+            {/* <Route path="/preorder/:filter" element={<Order/>} /> */}
         </Routes>
     )
 }

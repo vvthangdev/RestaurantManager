@@ -1,29 +1,42 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
+import {Link, NavLink} from 'react-router-dom'
 import classes from './header.module.css'
-
+import Navbar from '../Navbar/Navbar'
 export default function Header(){
 
     return <header className= {classes.header}>
         <div className={classes.container}>
             <Link to = '/' className = {classes.logo}>
-                <img src = {`${process.env.PUBLIC_URL}icons/logo-hust.png`}/>
+                <img src = {`${process.env.PUBLIC_URL}icons/logo-hust.png`} alt = "HUST"/>
                 <span>Quán nhậu Bách Khoa</span>
                 
             </Link>
+
             <nav>
-                <ul>
-                    
-                    <li className={classes.contact}>
-                        <Link to = "/contact">CONTACT</Link>    
-                    </li>                    
-                    <li className={classes.infor}>
-                        <Link to = "/infor">INFORMATION</Link>
-                    </li>
-                    <li className={classes.order}>
-                        <Link to = "/preorder">ORDER</Link>
-                    </li> 
-                </ul>
+                <NavLink
+                    to="/menu"
+                    className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                    MENU    
+                </NavLink>
+                <NavLink
+                    to="/contact"
+                    className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                    CONTACT
+                </NavLink>
+                <NavLink
+                    to="/infor"
+                    className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                    INFOR
+                </NavLink>
+                <NavLink
+                    to="/preorder"
+                    className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                    ORDER
+                </NavLink>
             </nav>
         </div>
     </header>    

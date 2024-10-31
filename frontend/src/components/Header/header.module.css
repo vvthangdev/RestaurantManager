@@ -48,4 +48,22 @@ a{
     font-weight: 500;
     font-size: 17px;
 }
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem;
+}
 
+nav a {
+    text-decoration: none;
+    color: black;
+    padding: 0.5rem 1rem;
+    margin-left: 5px;
+    font-size: 23px;
+    font-weight: 450;
+}
+.active {
+    font-weight: 777;
+    color: #af1313;
+}

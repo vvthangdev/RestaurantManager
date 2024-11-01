@@ -1,0 +1,169 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+   /* font-family:'Lexend',sans-serif;*/
+   
+}
+.contact{
+    
+    font-family:'Lexend';
+    position: relative;
+    min-height: 70vh;
+    padding: 0px 100px;
+    flex-direction: column;
+  background-color: #e7e9b6;
+    background-size:cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact .content{
+    width: 800px;
+    height:80px;
+    text-align: center;
+    margin-top: 0;
+   /* background: url(../../../../../../../Downloads/paper-3155438_1280.jpg);*/
+}   
+.contact .content h2{
+    
+    font-size: 36px;
+    font-weight: 650;
+    color: #000;
+}
+.content p{
+    font-weight: 300px;
+    color: #000;
+}
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.container .contactinfo{
+    margin:  0 40px;
+    width: 50%;
+    display:flex;
+    flex-direction: column;
+}
+.container .contactinfo .box{
+    position: relative;
+    padding: 20px 0px;
+    display:flex;
+}
+.container .contactinfo .box .icon{
+    min-width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 28px;
+}
+.container .contactinfo .box .text{
+    display:flex ;
+    margin-left: 20px;
+    font-size: 16px;
+    flex-direction: column;
+    font-weight: 300;
+
+}
+
+
+
+.contactform{
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 40%;          
+    margin:  0 40px;
+    background-color: #ffffff; 
+   
+    border-radius: 25px;    
+    padding: 40px;         
+  
+}
+.contactform h2{
+   text-align: center;
+    font-size: 20px;
+    color: #000;
+    font-weight: 500;
+}
+.contactform .inputbox{
+    position:relative;
+    width: 100%;
+    margin-top: 5px;;
+}
+
+
+
+.contactform .inputbox input,
+.contactform .inputbox textarea
+{
+    width: 100%;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid #333;
+    border-radius: 2px;
+    outline: none;
+    resize: none;
+}
+
+.contactform .inputbox span{
+    position: absolute;
+    left :0px;
+    padding: 5px 0;
+    font-size: 16px;
+    margin: 10px 0;
+    pointer-events: none;
+    transition: 0.5s;
+    color: #666;
+}
+.contactform .inputbox input:focus ~ span,
+.contactform .inputbox input:valid ~ span,
+.contactform .inputbox textarea:focus ~ span,
+.contactform .inputbox textarea:valid ~ span
+{
+    color: #000;
+    font-size: 12px;
+    transform: translateY(-20px);
+}
+
+.contactform .inputbox input[type = "submit"]{
+    
+    width : 100px;
+    background : #00bcd4;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 18px;
+}
+    
+@media (max-width: 900px) {
+   .contact {
+        padding: 50px;
+    }
+    
+   .container  {
+    flex-direction: column-reverse;
+    font-size: 20px;
+    }
+    .container .contactinfo{
+        margin-bottom: 40px;;
+    }
+}

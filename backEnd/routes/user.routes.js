@@ -1,9 +1,25 @@
 const express = require("express");
-const router = express.Router();
-const UserController = require("../controllers/user.controller");
+const userMiddleware = require("../middlewares/user.middleware.js");
+const userController = require("../controllers/user.controller.js");
 
-// Định nghĩa route POST /api/users để tạo người dùng mới
-router.post("/users", UserController.createUser);
-router.put('/users/:id', UserController.updateUser);
+const router = express.Router();
+
+router.get("/", userController.getAllUsers);
+
+router.post(
+  "/signup",
+  userMiddleware.validateSignUpSignUp,
+  userMiddleware.checkUserExistsSignUp,
+  userController.signUp
+);
+
+router.post("/login", userMiddleware.checkUserExistLogin, userController.login);
 
 module.exports = router;
+
+// {
+//   validateSignUpSignUp,
+//   checkUserExistsSignUp,
+//   checkUserExistLogin,
+// }
+// { getAllUsers, signUp }

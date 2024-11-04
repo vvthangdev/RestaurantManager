@@ -1,58 +1,74 @@
 const User = require("../models/user.model");
+// const bcrypt = require("bcrypt");
+const { Op } = require("sequelize");
+const userService = require("../services/user.service");
 
-// Tạo người dùng mới
-exports.createUser = (req, res) => {
-  // Kiểm tra request có đầy đủ thông tin không
-  if (
-    !req.body.name ||
-    !req.body.email ||
-    !req.body.phone_number ||
-    !req.body.password
-  ) {
-    return res.status(400).json({ message: "Content cannot be empty!" });
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.json(users);
+  } catch (error) {
+    res.status(500).json({ error: "Error fetching users" });
   }
+};
 
-  // Tạo đối tượng người dùng mới
-  const newUser = {
-    name: req.body.name,
-    email: req.body.email,
-    phone_number: req.body.phone_number,
-    password: req.body.password,
-  };
+const signUp = async (req, res) => {
+  let { role, name, address, bio, email, phone, username, password, token } =
+    req.body;
 
-  // Gọi model để thêm người dùng vào cơ sở dữ liệu
-  User.create(newUser, (err, data) => {
-    if (err) {
-      res.status(500).json({
-        message: err.message || "Some error occurred while creating the user.",
+  try {
+    const newUser = await userService.createUser({
+      role,
+      name,
+      address,
+      bio,
+      email,
+      phone,
+      username,
+      password,
+      token,
+    });
+    return res.json({
+      status: "SUCCESS",
+      message: "Signup successful!",
+      data: newUser,
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: "FAILED",
+      message: "An error occurred during sign up!",
+    });
+  }
+};
+
+const login = async (req, res) => {
+  let { username, password } = req.body;
+  // const user = await User.findOne({where: {username: username}});
+  try {
+    const user = await userService.getUserByUserName(username);
+    const isPasswordValid = await userService.validatePassword(
+      password,
+      user.password
+    );
+    console.log(isPasswordValid);
+    if (!isPasswordValid) {
+      return res.json({
+        status: "FAILED",
+        message: "Password incorrect!",
       });
-    } else {
-      res.status(201).json(data); // Trả về thông tin user vừa được tạo
     }
-  });
+    res.json({
+      status: "SUCCESS",
+      message: "Login successful!",
+    });
+  } catch (error) {
+    console.log(error);
+    res.json({
+      status: "FAILED",
+      message: "An error occurred during login!",
+    });
+  }
 };
 
-exports.updateUser = (req, res) => {
-  const updatedUser = {
-    name: req.body.name || null,
-    email: req.body.email || null,
-    phone_number: req.body.phone_number || null,
-    password: req.body.password || null,
-  };
-
-  User.updateById(req.params.id, updatedUser, (err, data) => {
-    if (err) {
-      if (err.kind === "not_found") {
-        res
-          .status(404)
-          .json({ message: `Not found user with id ${req.params.id}` });
-      } else {
-        res
-          .status(500)
-          .json({ message: `Error updating user with id ${req.params.id}` });
-      }
-    } else {
-      res.status(200).json(data);
-    }
-  });
-};
+module.exports = { getAllUsers, signUp, login };

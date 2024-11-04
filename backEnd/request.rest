@@ -1,0 +1,25 @@
+GET http://localhost:3000/
+
+###
+POST http://localhost:3000/signup
+Content-Type: application/json
+
+{
+    "role": "customer",
+    "name": "David Thompson",
+    "address": "456 Maple Rd, Bayside",
+    "bio": "Cycling lover and mountain hiker",
+    "email": "dv11@example.com",
+    "phone": "5115",
+    "username": "dai116",
+    "password": "davidsecure456"
+}
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+  "username": "davi11d16", 
+  "password": "davidsecure456"
+}

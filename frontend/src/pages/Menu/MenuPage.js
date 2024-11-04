@@ -19,7 +19,6 @@ export default function MenuPage(){
     const [state, dispatch] = useReducer(reducer, initialState);
     const {foods} = state;
     const {searchTerm} = useParams();
-    console.log(searchTerm)
     useEffect(() => {
         const loadFoods = searchTerm ? search(searchTerm) : getAll();
         loadFoods.then(foods => dispatch({type: "FOODS_LOADED", payload: foods}));

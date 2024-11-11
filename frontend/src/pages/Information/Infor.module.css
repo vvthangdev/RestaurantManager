@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin: 0;
+    padding:0;
+    box-sizing:border-box;
+          
+}
+.aboutus{
+    justify-content: center;
+    display: flex;
+}
+.aboutusbox {
+    margin-top: 10px;
+    height:80px;
+    width: 250px;
+    background-color: rgb(225, 51, 51);
+    border-radius: 25px;
+   display: flex;
+    font-size: 26px;
+    font-family: 'Roboto';
+    justify-content: center; /* Centers horizontally */
+    align-items: center;
+    
+}
+.aboutuscontent {
+    color: rgb(249, 249, 124);
+   
+}
+.boxinfo{
+    width: 100%;
+    display: flex;
+    
+    
+    position: relative;
+    margin-top: 10px;
+    flex-direction: column;
+   
+}
+.boxinfo .box1{
+    position: relative;
+    margin-left: 15px;
+    width: 80%;
+    height: 200px;
+    background-color: #fdf6f6;;
+    border-radius: 20px;
+    display: flex;
+    margin-bottom: 10px;
+    
+}
+.boxfood1{
+  
+    width: 20%;
+    height: 90%;
+    background-color: #fff;
+    border-radius: 20px;
+    background: url("C:\Users\user\Downloads\photo-1497644083578-611b798c60f3.avif");
+    background-size:cover;
+    border-style: solid ;
+    margin: 10px;
+}
+.boxcontent1 p{
+    margin-top: 10px;
+    margin-left: 10px; 
+}  
+.box2{
+    position: relative;
+    align-self: flex-end;
+    margin-right: 15px;
+    justify-content: space-between;
+   flex-direction: row-reverse;
+    width: 80%;
+    height: 200px;
+    background-color: #fdf6f6;;
+    border-radius: 20px;
+    display: flex;      
+    margin-bottom: 10px;
+}
+.box2 .boxfood2{
+  
+    width: 20%;
+    height: 90%;
+    background-color: #fff;
+    border-radius: 20px;
+    background-image: url("C:\Users\user\Downloads\photo-1432139509613-5c4255815697.avif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-style: solid ;
+    margin: 10px;
+}
+.box2 .boxcontent2 {
+   
+    
+    margin-top: 10px;
+    margin-left: 10px;   
+}
+
+.box3{
+    position: relative;
+    align-self: flex-start;
+    margin-right: 15px;
+   
+   
+    width: 80%;
+    height: 200px;
+    background-color: #fdf6f6;;
+    border-radius: 20px;
+    display: flex;      
+    margin-bottom: 10px;
+}
+.box3 .boxfood3{
+  
+    width: 20%;
+    height: 90%;
+    background-color: #fff;
+    border-radius: 20px;
+    background-image: url("C:\Users\user\Downloads\photo-1653796149139-c9da8470e6b4.avif");
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-style: solid ;
+    margin: 10px;
+}
+.box3 .boxcontent3 {
+   
+    
+    margin-top: 10px;
+    margin-left: 10px;   
+}

@@ -1,128 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-*{
-    margin: 0;
-    padding:0;
-    box-sizing:border-box;
-          
-}
-.aboutus{
-    justify-content: center;
-    display: flex;
-}
-.aboutusbox {
-    margin-top: 10px;
-    height:80px;
-    width: 250px;
-    background-color: rgb(225, 51, 51);
-    border-radius: 25px;
-   display: flex;
-    font-size: 26px;
-    font-family: 'Roboto';
-    justify-content: center; /* Centers horizontally */
-    align-items: center;
-    
-}
-.aboutuscontent {
-    color: rgb(249, 249, 124);
-   
-}
-.boxinfo{
-    width: 100%;
-    display: flex;
-    
-    
-    position: relative;
-    margin-top: 10px;
-    flex-direction: column;
-   
-}
-.boxinfo .box1{
-    position: relative;
-    margin-left: 15px;
-    width: 80%;
-    height: 200px;
-    background-color: #fdf6f6;;
-    border-radius: 20px;
-    display: flex;
-    margin-bottom: 10px;
-    
-}
-.boxfood1{
-  
-    width: 20%;
-    height: 90%;
-    background-color: #fff;
-    border-radius: 20px;
-    background: url("C:\Users\user\Downloads\photo-1497644083578-611b798c60f3.avif");
-    background-size:cover;
-    border-style: solid ;
-    margin: 10px;
-}
-.boxcontent1 p{
-    margin-top: 10px;
-    margin-left: 10px; 
-}  
-.box2{
-    position: relative;
-    align-self: flex-end;
-    margin-right: 15px;
-    justify-content: space-between;
-   flex-direction: row-reverse;
-    width: 80%;
-    height: 200px;
-    background-color: #fdf6f6;;
-    border-radius: 20px;
-    display: flex;      
-    margin-bottom: 10px;
-}
-.box2 .boxfood2{
-  
-    width: 20%;
-    height: 90%;
-    background-color: #fff;
-    border-radius: 20px;
-    background-image: url("C:\Users\user\Downloads\photo-1432139509613-5c4255815697.avif");
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-style: solid ;
-    margin: 10px;
-}
-.box2 .boxcontent2 {
-   
-    
-    margin-top: 10px;
-    margin-left: 10px;   
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Tilt+Warp&display=swap');
+.infor_wrapper{
+    background: #f8f8f8;
 }
 
-.box3{
-    position: relative;
-    align-self: flex-start;
-    margin-right: 15px;
-   
-   
-    width: 80%;
-    height: 200px;
-    background-color: #fdf6f6;;
-    border-radius: 20px;
-    display: flex;      
-    margin-bottom: 10px;
+.infor_content{
+    padding: 40px 0;
 }
-.box3 .boxfood3{
-  
-    width: 20%;
-    height: 90%;
-    background-color: #fff;
-    border-radius: 20px;
-    background-image: url("C:\Users\user\Downloads\photo-1653796149139-c9da8470e6b4.avif");
-    background-size: contain;
-    background-repeat: no-repeat;
-    border-style: solid ;
-    margin: 10px;
+
+.infor_wrapper{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
 }
-.box3 .boxcontent3 {
-   
+ .infor_box{
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF;
+    border: 1px solid #EFEFEF;
+    border-radius: 20px;
+    padding: 25px 25px 25px 36px;
+    margin-bottom: 30px;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+.infor_box_left{
     
-    margin-top: 10px;
-    margin-left: 10px;   
+    display: flex;
+  
+          flex-direction: column;
+  width: 60%;
+  margin-right: 35px;
+}
+.infor_box_left_title1 {
+    font-size: 38px;
+  line-height: 110%;
+  font-family: "Tilt Warp";
+  letter-spacing: -0.02em;
+  color: #1B4E30;
+
+}
+.infor_box_left_des {
+    font-size: 20px;
+    line-height: 100%;
+    font-family: "Plus Jakarta Sans";
+    color: #666666;
+    margin-bottom: 15px;
+}
+.infor_box_right{
+    width: 37%;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border-radius: 10px;
+}
+ .test{
+    width: 100%;
+    display: flex;
+  } .infor_box_right_image{
+    display: block;
+  width: 100%;
+}
+ .infor_box_right_image i{
+ display: block;
+  position: relative;
+  padding-top: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.infor_box_right_image img{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+   
 }

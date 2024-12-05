@@ -8,15 +8,6 @@ const OrderDetail = sequelize.define('OrderDetail', {
     primaryKey: true,
     autoIncrement: true,
   },
-  customer_id: {
-    type: DataTypes.INTEGER,
-    allowNull: false,
-    references: {
-      model: User,
-      key: 'id',
-    },
-    onDelete: 'CASCADE',
-  },
   time: {
     type: DataTypes.DATE,
     defaultValue: DataTypes.NOW,

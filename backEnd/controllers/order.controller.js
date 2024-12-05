@@ -15,7 +15,7 @@ const getAllOrders = async (req, res) => {
 
 const getAllOrdersOfCustomer = async (req, res) => {
   try {
-    const customer_id = req.user.id;
+    const customer_id = 0;
     const orders = await OrderDetail.findAll({customer_id});
     res.json(orders);
   } catch (error) {
@@ -32,7 +32,7 @@ const createOrder = async (req, res) => {
     // Tạo order mới trong transaction
     const newOrder = await orderService.createOrder(
       {
-        customer_id: req.user.id,
+        customer_id: 0,
         time: start_time,
         num_people, // Lưu số lượng khách vào order
         ...orderData,

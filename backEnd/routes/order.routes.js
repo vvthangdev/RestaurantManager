@@ -8,6 +8,8 @@ const { route } = require("./user.routes.js");
 
 const router = express.Router();
 
+router.post("/create-order", orderController.createOrder);
+
 router.use(authMiddware.authenticateToken);
 
 router.get("/", authMiddware.adminRoleAuth,orderController.getAllOrders);
@@ -16,11 +18,5 @@ router.get('/get-all-orders', authMiddware.authenticateToken, orderController.ge
 
 router.post("/update-evaluate/:orderId", orderController.updateEvaluate);
 
-router.use(authMiddware.notAdminRoleAuth);
-
-router.post("/create-order", orderController.createOrder);
-// router.patch("/update-reservation", orderController.updateOrder);
-
-// router.delete("/delete-reservation", orderController.deleteOrder);
 
 module.exports = router;

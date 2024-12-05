@@ -4,6 +4,8 @@ import classes from './foodPage.module.css';
 import { getById } from "../../services/foodService";
 import Price from "../../components/Price/Price";
 import NotFound from "../../components/NotFound/NotFound";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 export default function FoodPage(){
     const [food, setFood] = useState({});
@@ -13,11 +15,14 @@ export default function FoodPage(){
         getById(id).then(setFood);
     }, [id]);
     return <>
+        <Header/>
         {!food ? (<NotFound message="Food Not Found!" linkText="Back to Menu Page"></NotFound>) : 
-        (<div className={classes.container}>
+        (
+        <div className={classes.container}>
             <img
                 className={classes.image}
-                src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}
+                
+                src = {`${process.env.PUBLIC_URL}${food.image}`}
                 alt = {food.name}
             />
             <div className={classes.details}>
@@ -30,5 +35,6 @@ export default function FoodPage(){
                 </div>
             </div>
         </div>)}
+        <Footer/>
     </>
 }

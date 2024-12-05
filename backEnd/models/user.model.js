@@ -9,14 +9,14 @@ const User = sequelize.define(
       autoIncrement: true,
       primaryKey: true,
     },
+    name: {
+      type: DataTypes.STRING(255),
+      allowNull: false,
+    },
     role: {
       type: DataTypes.ENUM("CUSTOMER", "ADMIN"),
       allowNull: false,
       defaultValue: "CUSTOMER",
-    },
-    name: {
-      type: DataTypes.STRING(255),
-      allowNull: false,
     },
     address: {
       type: DataTypes.STRING(255),

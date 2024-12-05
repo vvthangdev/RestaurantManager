@@ -34,4 +34,50 @@ router.delete(
   userController.deleteUser
 );
 
+
+//for data_samples
+const genarateTokenResponse = user => {
+    const token = jwt.sign({
+            id: user.id,
+            email: user.email,
+        },
+        'Hello World',
+        {
+            expiresIn: '30d'
+        }
+    );
+
+    return{
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        address: user.address,
+        token,
+        errorId: 0,
+    };
+};
+
+// router.post('/login', (req, res) => {
+//     console.log(req.body);
+//     const {email, password} = req.body;
+//     const user = sample_users.find(
+//         user => user.email === email && user.password === password
+//     );
+
+//     if(user){
+//         res.send(genarateTokenResponse(user));
+//         return;
+//     }
+
+//     res.status(BAD_REQUEST).send({ errorMessage: 'Username or password is invalid',
+//                                     errorId: 1,
+//                                 });
+// });
+
+// router.get('/dashboard', authMiddleware, (req, res) => {
+//     res.json({
+//         message: "HELLO WORLD",
+//         user: req.user
+//     });
+// });
 module.exports = router;

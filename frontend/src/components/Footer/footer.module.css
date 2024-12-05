@@ -9,25 +9,25 @@ footer {
     padding: 1rem;
     display: flex;
     align-items: center;
-    font-size: 27px;
+    font-size: 2rem;
     color: #af1313;
 }
 .logo img {
-    height: 57px;
-    margin-right: 7px;
+    height: 3rem;
+    margin-right: 0.5rem;
 }
 .container{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-left: 50px;
+    margin-left: 3rem;
 }
 .order{
-    border: 2px solid #af1313;
-    padding: 10px;
-    font-size: 20px;
-    margin-bottom: 15px;
-    border-radius: 10px;
+    border: 0.1rem solid #af1313;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
     color: #af1313;
     font-weight: 500;
 }
@@ -37,7 +37,7 @@ footer {
 
 }
 .infor_restaurant{
-    margin-right: 50px;
+    margin-right: 3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -56,17 +56,17 @@ footer {
     color:#af1313;
 }
 .component{
-    margin-top: 5px;
-    margin-bottom: 5px;
-    font-size: 17px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
     font-weight: 400;
 }
 
 .component_restaurant{
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     color: #af1313;
-    font-size: 20px;
+    font-size: 1.5rem;
     font-weight: 500;
 }
 .component_restaurant:hover {

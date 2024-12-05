@@ -5,11 +5,11 @@ export default function Footer(){
     return <footer className={classes.footer}>
         <div className={classes.container}>
             <Link to = '/' className = {classes.logo}>
-                <img src = {`${process.env.PUBLIC_URL}icons/logo-hust.png`}/>
+                <img src = {`${process.env.PUBLIC_URL}/icons/logo-hust.png`}/>
                 <span>Quán nhậu Bách Khoa</span>
                 
             </Link>
-            <Link to = "/preorder" className = {classes.order}>ORDER</Link>
+            <Link to = "/order" className = {classes.order}>ORDER</Link>
         </div>
         <div className={classes.infor_contact}>
             <div className={classes.infor_social_private}>
@@ -30,7 +30,7 @@ export default function Footer(){
         <div className={classes.infor_restaurant}>
             <div className={classes.infor_detail}>
                 <Link to = '/infor' className = {classes.component_restaurant}>
-                    Information     
+                    Information   
                 </Link>
                 <Link to = "/contact" className = {classes.component_restaurant}>
                     Contact

@@ -2,7 +2,7 @@ import React from "react";
 import InputContainer from "../InputContainer/InputContainer";
 import classes from "./input.module.css";
 function Input(
-    {label, type, defaultValue, onChange, onBlur, name, error}, ref
+    {label, type, defaultValue, onChange, onBlur, name, error, flag = true}, ref
 ){
     const getErrorMessage = () =>{
         if(!error) return;
@@ -17,8 +17,9 @@ function Input(
                 return '*';
         }
     }
+    console.log(error)
     return(
-        <InputContainer label = {label}>
+        <InputContainer label = {label} flag = {flag}>
             <input
                 defaultValue={defaultValue}
                 className={classes.input}

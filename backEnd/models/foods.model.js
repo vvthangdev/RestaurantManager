@@ -1,7 +1,6 @@
 
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/db.config"); // Adjust the path to your database config
-
 const Foods = sequelize.define(
   "Foods",
   {
@@ -29,7 +28,7 @@ const Foods = sequelize.define(
       }
   },
   {
-    tableName: "Foods", // Matches the existing table name in the database
+    tableName: "foods", // Matches the existing table name in the database
     timestamps: false, // Disable timestamps if your table does not have `createdAt` and `updatedAt` fields
   }
 );

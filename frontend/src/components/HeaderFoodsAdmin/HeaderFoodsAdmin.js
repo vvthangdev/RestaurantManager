@@ -1,16 +1,22 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import classes from './headerFoodsAdmin.module.css';
 import { logout } from '../../services/userService';
+import { useAuth } from '../../hooks/useAuth';
 //import { useAuth } from '../../hooks/useAuth';
 
-export default function HeaderFoodsAdminPage({handleLogout}) {
-  //const { user, logout } = useAuth();
-    const user = JSON.parse(localStorage.getItem('user')); //Do tra ve string
+export default function HeaderFoodsAdminPage() {
+    const navigate = useNavigate();
 
+    const { admin, logout } = useAuth();
+    useEffect (() => {
+        if(!admin) navigate('/menu');
+    })
+    //const admin = JSON.parse(localStorage.getItem('admin')); //Do tra ve string
+    
     return (
         <>
-            {user
+            {admin
                 &&
             <header className={classes.header}>
                 <div className={classes.container}>
@@ -22,15 +28,15 @@ export default function HeaderFoodsAdminPage({handleLogout}) {
                     <ul>
                         <li className={classes.menu_container}>
                             <div className={classes.menu}>
-                                <span className={classes.name}>{user.name}</span>
-                                <button className={classes.logout} onClick={handleLogout}>SIGN OUT</button>
+                                <span className={classes.name}>{admin.name}</span>
+                                <button className={classes.logout} onClick={logout}>SIGN OUT</button>
                             </div>  
                         </li>
                     </ul>
                 </div>
             </header>
             }
-            {!user
+            {/* {!admin
                 &&
             <header className={classes.header}>
                 <div className={classes.container}>
@@ -43,13 +49,13 @@ export default function HeaderFoodsAdminPage({handleLogout}) {
                         <li className={classes.menu_container}>
                             <div className={classes.menu}>
                                 <span className={classes.name}>NO NAMES</span>
-                                <button className={classes.logout} onClick={handleLogout}>SIGN OUT</button>
+                                <button className={classes.logout} onClick={logout}>SIGN OUT</button>
                             </div>  
                         </li>
                     </ul>
                 </div>
             </header>
-            }
+            } */}
         </>
     );
 }

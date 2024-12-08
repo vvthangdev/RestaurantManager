@@ -5,7 +5,7 @@ export default function Header(){
 
     return <header className= {classes.header}>
         <div className={classes.container}>
-            <Link to = '/' className = {classes.logo}>
+            <Link to = '/menu' className = {classes.logo}>
                 <img src = {`${process.env.PUBLIC_URL}/icons/logo-hust.png`} alt = "HUST"/>
                 <span>Quán nhậu Bách Khoa</span>
                 

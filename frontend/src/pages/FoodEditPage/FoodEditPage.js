@@ -9,6 +9,8 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+
 const FoodEditPage = () => {
     const {foodId} = useParams();
     //const [image, setImage] = useState();
@@ -39,15 +41,15 @@ const FoodEditPage = () => {
             const confirmed = window.confirm("Bạn có chắc muốn thay đổi không?");
             if(!confirmed) return;
             await updateFood(foodId, foodData);
-            navigate('/admin/foods', {replace : true});
             toast.success(`"${foodData.name}" Thay đổi thành công!`);
+            navigate('/admin/foods', {replace : true});
             console.log("vui ve")
             return;
         }
         console.log(foodData);
         const newFood = await addFood(foodData);
-        navigate('/admin/foods', {replace : true});
         toast.success(`"${foodData.name}" Thêm thành công!`);
+        navigate('/admin/foods', {replace : true});
         console.log("vui ve")
     };
 
@@ -59,7 +61,7 @@ const FoodEditPage = () => {
 
     return (
         <>
-            <Header/>
+            <HeaderFoodsAdminPage/>
             <div className={classes.container}>
                 <div className={classes.content}>
                     <Title title={isEditMode ? 'Sửa món ăn' : 'Thêm món ăn'} color = {"black"} margin={"1rem 0 0 0"}/>
@@ -67,25 +69,26 @@ const FoodEditPage = () => {
                         className = {classes.form}
                         onSubmit={handleSubmit(submit)}
                         noValidate
+                        accept-charset="UTF-8"
                     >
 
                         <Input
                             type="text"
-                            label="Name"
+                            label="Tên"
                             {...register('name', { required: true, minLength: 1 })}
                             error={errors.name}
                         />
 
                         <Input
                             type="number"
-                            label="Price"
+                            label="Giá"
                             {...register('price', { required: true })}
                             error={errors.price}
                         />
 
                         <Input
                             type="text"
-                            label="Description"
+                            label="Mô tả"
                             {...register('description')}
                             error={errors.description}
                         />
@@ -93,7 +96,7 @@ const FoodEditPage = () => {
 
                         <Input
                             type="text"
-                            label="Image"
+                            label="Ảnh"
                             {...register('image', { required: true })}
                             error={errors.image}
                         />

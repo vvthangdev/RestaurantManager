@@ -10,9 +10,19 @@ const getAllTables = async (req, res) => {
   }
 };
 
-const createTable = async (req, res) => {
+const getTableByTableNumber = async (req, res) => {
+  const {table_number} = req.params;
   try {
-    console.log(req.user)
+        const table = await tableService.getTableByTableNumber(table_number - 0);
+        return res.status(200).json(table);
+    }catch (error){
+        console.log(error);
+        return res.status(500).json({message : "Server Error"})
+    }
+}
+const createTable = async (req, res) => {
+  console.log(req.body);
+  try {
     const { ...tableData } = req.body;
     const newTable = await tableService.createTable({ ...tableData });
     res.status(201).json(newTable);
@@ -23,26 +33,18 @@ const createTable = async (req, res) => {
 
 const updateTable = async (req, res) => {
   try {
-    const { table_number, ...otherFields } = req.body; // Adjust as needed to accept relevant fields
-    if (!table_number) {
-      return res.status(400).send("Table number required.");
-    }
-    if (!otherFields || Object.keys(otherFields).length === 0) {
-      return res.status(400).send("No fields to update.");
-    }
-    // Update the user information in the database
-    const updatedTable = await tableService.updateTable(table_number, {
-      ...otherFields, // Spread other fields if there are additional updates
+    const { table_number } = req.params; // Adjust as needed to accept relevant fields
+    const table = req.body;
+    const tableUpdate = await tableService.updateTable(table_number - 0, table);
+    res.status(201).json({
+        message: "Account updated successfully!",
+        data: tableUpdate,
     });
-
-    if (!updatedTable) {
-      return res.status(404).send("Table not found!");
-    }
-    res.json({
-      status: "SUCCESS",
-      message: "Table updated successfully!",
-      Table: updatedTable,
-    });
+    // res.json({
+    //   status: "SUCCESS",
+    //   message: "Table updated successfully!",
+    //   Table: updatedTable,
+    // });
   } catch (error) {
     res.status(500).json({ error: "Error updating table" });
   }
@@ -50,14 +52,12 @@ const updateTable = async (req, res) => {
 
 const deleteTable = async (req, res) => {
   try {
-    console.log(req.body.table_number)
-    const table = await tableService.getTableByTableNumber(req.body.table_number);
-    console.log(table)
-    if (table) {
-      await table.destroy();
-      res.json({ message: "Table deleted" });
-    } else {
-      res.status(404).json({ error: "Table not found" });
+    const {table_number} = req.params
+    const table = await tableService.deleteTableByTableNumber(table_number);
+    if(table === 1) {
+        res.status(200).json({
+        message: "Table deleted successfully!",
+        });
     }
   } catch (error) {
     res.status(500).json({ error: "Error deleting table" });
@@ -69,4 +69,5 @@ module.exports = {
   createTable,
   updateTable,
   deleteTable,
+  getTableByTableNumber,
 };

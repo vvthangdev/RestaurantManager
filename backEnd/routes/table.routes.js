@@ -8,14 +8,15 @@ const router = express.Router();
 
 router.get("/", tableController.getAllTables);
 
-router.use(authMiddware.authenticateToken);
+// router.use(authMiddware.authenticateToken);
 
-router.use(authMiddware.adminRoleAuth);
+// router.use(authMiddware.adminRoleAuth);
 
 router.post("/create-table", tableController.createTable);
 
-router.patch("/update-table", tableController.updateTable);
+router.put("/update-table/:table_number", tableController.updateTable);
+router.get("/get-table-by-number/:table_number", tableController.getTableByTableNumber);
 
-router.delete("/delete-table", tableController.deleteTable);
+router.delete("/delete-table/:table_number", tableController.deleteTable);
 
 module.exports = router;

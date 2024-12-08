@@ -1,22 +1,22 @@
-const express = require("express");
-const userMiddleware = require("../middlewares/user.middleware.js");
-const itemController = require("../controllers/item.controller.js");
-// const userUtil = require("../utils/user.util.js");
-const authMiddware = require("../middlewares/auth.middleware.js");
+// const express = require("express");
+// const userMiddleware = require("../middlewares/user.middleware.js");
+// const itemController = require("../controllers/item.controller.js");
+// // const userUtil = require("../utils/user.util.js");
+// const authMiddware = require("../middlewares/auth.middleware.js");
 
-const router = express.Router();
+// const router = express.Router();
 
-router.get("/", itemController.getAllItems);
+// router.get("/", itemController.getAllItems);
 
-router.use(authMiddware.authenticateToken);
-router.use(authMiddware.adminRoleAuth);
+// router.use(authMiddware.authenticateToken);
+// router.use(authMiddware.adminRoleAuth);
 
-router.post("/create-item", itemController.createItem);
+// router.post("/create-item", itemController.createItem);
 
-router.patch("/update-item", itemController.updateItem);
+// router.patch("/update-item", itemController.updateItem);
 
-router.get("/search-item", itemController.searchItem);
+// router.get("/search-item", itemController.searchItem);
 
-router.delete("/delete-item", itemController.deleteItem);
+// router.delete("/delete-item", itemController.deleteItem);
 
-module.exports = router;
+// module.exports = router;

@@ -204,6 +204,21 @@ async function updateOrder(id, data) {
     throw new Error("Error while updating order");
   }
 }
+async function updateOrderNew(id, data) { 
+  try { 
+    const order = await OrderDetail.findOne({ where: { id } });
+    if (!order) {
+      return null;
+    }
+    await order.update({
+        status : data.status,
+    });
+    return order;
+  } catch(e) { 
+    console.log(e);
+    throw new Error("Error while updating order");
+  }
+}
 module.exports = {
   createOrder,
   createReservations,
@@ -211,5 +226,6 @@ module.exports = {
   updateTable,
   getTableByTableNumber,
   createItemOrders,
-  updateOrder
+  updateOrder,
+  updateOrderNew
 };

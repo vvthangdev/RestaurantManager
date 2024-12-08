@@ -11,8 +11,10 @@ const TableInfo = sequelize.define('TableInfo', {
     allowNull: false,
   },
 }, {
-  tableName: 'table_info',
-  timestamps: false,
+    charset: 'utf8mb4', // Mã hóa UTF-8 cho bảng
+    collate: 'utf8mb4_unicode_ci', // Chỉ định phương pháp so sánh chuỗi
+    tableName: 'table_info',
+    timestamps: false,
 });
 
 module.exports = TableInfo;

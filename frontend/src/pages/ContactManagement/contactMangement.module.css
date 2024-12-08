@@ -1,0 +1,75 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 10rem;
+}
+
+.list {
+    margin: 1rem;
+    max-width: 90rem;
+}
+
+a.add_food {
+    display: inline-block;
+    background: darkred;
+    color: white;
+    padding: 0.7rem;
+    margin: 0.8rem 0;
+    border-radius: 1.5rem;
+}
+
+a.add_food:hover {
+    opacity: 0.9;
+}
+
+.list_item_title {
+    display: grid;
+    grid-template-columns:
+        minmax(7rem, 10rem) minmax(10rem, 17rem) minmax(10rem, 17rem) minmax(10rem, 11rem) minmax(10rem, 17rem);    font-size: 1.3rem;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-weight: 500;
+
+}
+
+.list_item {
+    display: grid;
+    grid-template-columns:
+        minmax(7rem, 10rem) minmax(10rem, 17rem) minmax(10rem, 17rem) minmax(10rem, 11rem) minmax(10rem, 17rem);    
+    font-size: 1.2rem;
+    height: 5rem;
+    align-items: center;
+    justify-content: center;
+}
+.list_item>div {
+    white-space: nowrap;
+    /* Không cho nội dung xuống dòng */
+    overflow: hidden;
+    /* Ẩn phần nội dung thừa */
+    text-overflow: ellipsis;
+    /* Hiển thị "..." khi nội dung bị cắt */
+}
+
+.list_item img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100rem;
+    object-fit: cover;
+}
+
+.actions>a {
+    margin-right: 1rem;
+    color: darkblue;
+    cursor: pointer;
+}
+
+.edit {
+    color: orange;
+}
+
+.delete {
+    color: #e72929;
+}

@@ -28,7 +28,7 @@ export const deleteFoodById = async (foodId) => {
 }
 
 export const updateFood = async (foodId, food) => {
-    await axios.put(`/api/admin/updatefood/${foodId}`, food);
+    await axios.put(`/api/admins/updatefood/${foodId}`, food);
 }
 
 export const addFood = async (food) => {

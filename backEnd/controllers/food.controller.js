@@ -92,7 +92,7 @@ const updateFood = async (req, res) => {
       const food = req.body;
       const foodUpdate = await foodService.updateFood(foodId, food);
         res.status(201).json({
-            message: "Food created successfully!",
+            message: "Food updated successfully!",
             data: foodUpdate,
         });
 

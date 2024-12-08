@@ -3,16 +3,52 @@ const orderService = require("../services/order.service");
 const userService = require("../services/user.service");
 const sequelize = require("../config/db.config"); // Đảm bảo import sequelize để sử dụng transaction
 const { createOrderUserInfo } = require("../services/order_user_info.service");
-
+const OrderUserInfo = require("../models/order_user_info.model");
 const getAllOrders = async (req, res) => {
   try {
-    const orderDetail = await OrderDetail.findAll();
+    const orderDetail = await OrderDetail.findAll(
+        // {
+        //   include: [{
+        //     model: OrderUserInfo,
+        //     foreignKey: 'order_detail_id', // Đặt rõ ràng khóa ngoại trong truy vấn
+        //     attributes: ['name'],  // Chỉ lấy trường 'name' từ bảng OrderUserInfo
+        //   }]
+        // }
+    );
     res.json(orderDetail);
   } catch (error) {
     res.status(500).json({ error: "Error fetching orders" });
   }
 };
+const getOrderById = async (req, res) => {
+    try{
+        const {orderId} = req.params
+        const orderDetail = await OrderDetail.findOne({
+            where : {id : orderId}
+        }
+            
+        );
+        res.json(orderDetail);
+    }catch (error){
 
+    }
+}
+const deleteOrderById = async (req, res) => {
+    try{
+        const {orderId} = req.params
+        const orderDetail = await OrderDetail.findOne({
+            where : {id : orderId}
+        }
+        );
+        await OrderDetail.destroy({
+            where : {id : orderId}
+        });
+        res.json(orderDetail);
+    }catch (error){
+        console.log("Error deleting order: ", error);
+        throw new Error("An error occurred while deleting the order.");
+    }
+}
 const getAllOrdersOfCustomer = async (req, res) => {
   try {
     const customer_id = 0;
@@ -25,13 +61,16 @@ const getAllOrdersOfCustomer = async (req, res) => {
 
 
 const createOrder = async (req, res) => {
+    console.log(3);
+    console.log(req.body);
   const transaction = await sequelize.transaction(); // Khởi tạo transaction
   try {
-    let { start_time, num_people, items, ...orderData } = req.body; // Số lượng khách và danh sách các món hàng
+    let { email, name, phone, start_time, num_people, foods, ...orderData } = req.body; // Số lượng khách và danh sách các món hàng
 
     // Tạo order mới trong transaction
     const newOrder = await orderService.createOrder(
       {
+
         customer_id: 0,
         time: start_time,
         num_people, // Lưu số lượng khách vào order
@@ -39,7 +78,7 @@ const createOrder = async (req, res) => {
       },
       { transaction } // Pass transaction vào trong service
     );
-
+    //await createOrderUserInfo({...userInfo, 'order_detail_id': customerId});
     // Lấy thời gian bắt đầu từ orderData
     const startTime = newOrder.time; // Giả sử thời gian bắt đầu là time trong orderData
 
@@ -99,22 +138,33 @@ const createOrder = async (req, res) => {
       await orderService.createReservations(reservedTables, { transaction });
 
       // Nếu có món hàng, tạo item orders (mối quan hệ giữa món hàng và đơn hàng)
-      if (items && items.length > 0) {
-        let itemOrders = items.map((item) => ({
-          item_id: item.id,
-          quantity: item.quantity,
+      if (foods && foods.length > 0) {
+        let itemOrders = foods.map((food) => ({
+          item_id: food.id,
+          quantity: food.quantity,
           order_id: newOrder.id,
         }));
 
         // Lưu thông tin vào bảng item_order
         await orderService.createItemOrders(itemOrders, { transaction });
       }
-
+      if(name){
+        let userOrderInfo  = await createOrderUserInfo({
+            order_detail_id : newOrder.id,
+            name : name,
+            email : email,
+            phone : phone,
+        });
+      }
       // Commit transaction khi tất cả các thao tác thành công
       await transaction.commit();
 
       // Trả về kết quả order đã tạo
-      res.status(201).json(newOrder);
+      res.status(201).json({
+        name : name,
+        phone : phone,
+        newOrder}
+    );
     } else {
       // Nếu không có bàn trống
       await transaction.rollback(); // Rollback transaction nếu không có bàn trống
@@ -145,6 +195,32 @@ const updateOrder = async (req, res) => {
     const updatedOrder = await orderService.updateOrder(id, {
       ...otherFields, // Spread other fields if there are additional updates
     });
+
+    if (!updatedOrder) {
+      return res.status(404).send("Order not found!");
+    }
+    res.json({
+      status: "SUCCESS",
+      message: "Order updated successfully!",
+      Order: updatedOrder,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Error updating order" });
+  }
+};
+const updateOrderNew = async (req, res) => {
+  try {
+    const { id} = req.params; // Adjust as needed to accept relevant fields
+    const data = req.body;
+    if (!id) {
+      return res.status(400).send("Order number required.");
+    }
+    // if (!otherFields || Object.keys(otherFields).length === 0 && !status) {
+    //   return res.status(400).send("No fields to update.");
+    // }
+    // Update the user information in the database
+    const updatedOrder = await orderService.updateOrderNew(id, data);
 
     if (!updatedOrder) {
       return res.status(404).send("Order not found!");
@@ -217,5 +293,8 @@ module.exports = {
   updateOrder,
   createShipOrder,
   updateEvaluate,
-  getAllOrdersOfCustomer
+  getAllOrdersOfCustomer,
+  updateOrderNew,
+  getOrderById,
+  deleteOrderById,
 };

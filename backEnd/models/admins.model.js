@@ -16,7 +16,7 @@ const Admin = sequelize.define(
         allowNull: false
       },
       role: {
-        type: DataTypes.ENUM("MANAGER", "ADMIN"),
+        type: DataTypes.ENUM("STAFF", "ADMIN"),
         allowNull: false,
         defaultValue: "ADMIN",
     },
@@ -46,9 +46,12 @@ const Admin = sequelize.define(
     },
   },
   {
-    tableName: "Admin", // Matches the existing table name in the database
+    charset: 'utf8mb4', // Mã hóa UTF-8 cho bảng
+    collate: 'utf8mb4_unicode_ci', // Chỉ định phương pháp so sánh chuỗi
+    tableName: "admins", // Matches the existing table name in the database
     timestamps: false, // Disable timestamps if your table does not have `createdAt` and `updatedAt` fields
   }
 );
 
 module.exports = Admin;
+

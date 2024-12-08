@@ -28,7 +28,46 @@ const getAllContacts = async (req, res) => {
         });
     }
 }
+
+const getContactById = async (req, res) => {
+    const {contactId} = req.params;
+    try {
+        const contact = await Contact.findAll({where : {
+            id : contactId,
+        }});
+        return res.status(200).json(contact);
+    }catch (error){
+        console.log(error);
+        return res.status(500).json({message : "Server Error"})
+    }
+}
+
+const deleteContactById = async (req, res) => {
+    try {
+        const {contactId} = req.params;
+        const contact = await Contact.findAll({where : {
+            id : contactId,
+        }});
+        if(contact){
+            await Contact.destroy({
+                where : {id : contactId}
+            });
+            
+                res.status(200).json({
+                message: "Contact deleted successfully!",
+                });
+            return;
+        }
+    }catch (error) {
+        res.status(500).json({
+            message: "Error deleting account",
+            error: error.message,
+        });
+    }
+}
 module.exports = {
     createContact,
-    getAllContacts
+    getAllContacts,
+    getContactById,
+    deleteContactById,
 }

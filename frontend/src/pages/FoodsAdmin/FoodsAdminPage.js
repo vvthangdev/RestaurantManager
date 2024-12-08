@@ -1,6 +1,3 @@
-// import Footer from '../../components/Footer/Footer';
-// import Header from '../../components/Header/Header';
-// import classes from './foodsAdminPage.module.css';
 
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
@@ -13,60 +10,6 @@ import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
-// import NotSignIn from '../../components/NotSignIn/NotSignIn';
-// import { logout } from '../../services/userService';
-// import { useNavigate, useParams } from 'react-router-dom';
-// import HeaderFoodsAdminPage from '../../components/HeaderFoodsAdmin/HeaderFoodsAdmin';
-// import ManageFoods from '../../components/ManageFoods/ManageFood';
-// import { useEffect, useReducer } from 'react';
-// import { getAll, search } from '../../services/foodService';
-// import Thumbnails from '../../components/Thumbnails/Thumbnails';
-
-// const initialState = {foods : []};
-// const reducer = (state, action) => {
-//     switch(action.type){
-//         case 'FOODS_LOADED':
-//             return{...state, foods : action.payload};
-//         default: 
-//             return state;
-//     }
-// }
-
-// export default function FoodsAdminPage(){
-//     const [state, dispatch] = useReducer(reducer, initialState);
-//     const {foods} = state;
-//     const {searchTerm} = useParams();
-//     useEffect(() => {
-//         const loadFoods = searchTerm ? search(searchTerm) : getAll();
-//         loadFoods.then(foods => dispatch({type: "FOODS_LOADED", payload: foods}));
-//     }, [searchTerm]);
-//     const existingUser = localStorage.getItem('user');
-//     const navigate = useNavigate();
-//     const handleLogOut = (e) => {
-//         logout();
-//         navigate("/login");
-//     }
-//     return (      
-//         <>
-            
-//                 {!existingUser && 
-//                 <>
-//                     <Header/>
-//                     <NotSignIn linkText="SIGN IN"></NotSignIn>
-//                     <Footer/>
-//                 </>
-//                 }
-//                 {existingUser &&
-//                     <>
-//                         <HeaderFoodsAdminPage handleLogout={handleLogOut}/>
-//                         <ManageFoods/>
-//                         {/* <Thumbnails foods = {foods} /> */}
-//                     </>
-//                 }
-            
-//         </>
-//     )
-// }
 
 const FoodAdminPage = () => {
     const [foods, setFoods] = useState([]);
@@ -76,7 +19,7 @@ const FoodAdminPage = () => {
         const loadFoods = searchTerm ? search(searchTerm) : getAll();
         loadFoods.then(foods => {
             setFoods(foods);
-            console.log(foods);
+            //console.log(foods);
         }); 
 
     }, [searchTerm]);

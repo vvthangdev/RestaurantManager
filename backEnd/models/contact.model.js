@@ -26,6 +26,8 @@ const Contact = sequelize.define('Contact', {
     }
   }, {
     sequelize,
+    charset: 'utf8mb4', // Mã hóa UTF-8 cho bảng
+    collate: 'utf8mb4_unicode_ci',
     tableName: 'contact',
     timestamps: false,
   });

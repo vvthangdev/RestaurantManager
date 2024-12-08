@@ -1,12 +1,13 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db.config');
-const User = require('./user.model');  // Đảm bảo đã import mô hình User
-
+//const User = require('./user.model');  // Đảm bảo đã import mô hình User
+const OrderUserInfo = require('./order_user_info.model')
 const OrderDetail = sequelize.define('OrderDetail', {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
+    allowNull: false,
   },
   time: {
     type: DataTypes.DATE,
@@ -35,8 +36,11 @@ const OrderDetail = sequelize.define('OrderDetail', {
     allowNull: true
   }
 }, {
+  charset: 'utf8mb4', // Mã hóa UTF-8 cho bảng
+  collate: 'utf8mb4_unicode_ci', // Chỉ định phương pháp so sánh chuỗi
   tableName: 'order_detail',
   timestamps: false,
 });
+
 
 module.exports = OrderDetail;

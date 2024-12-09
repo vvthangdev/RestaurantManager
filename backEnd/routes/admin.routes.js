@@ -13,6 +13,7 @@ router.delete("/admins/deleteaccount/:adminId", admin, adminController.deleteAdm
 router.post("/admins/createaccount", admin, adminController.createNewAdmin);
 router.put("/admins/updateaccount/:adminId", admin, adminController.updateAdminById);
 router.post("/admins/login", adminController.login)
+// router.post("/new-admin", adminController.createNewAdmin)
 // router.use(authMiddware.authenticateToken);
 // router.use(authMiddware.adminRoleAuth);
 

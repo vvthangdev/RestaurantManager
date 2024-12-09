@@ -6,6 +6,7 @@ const { createOrderUserInfo } = require("../services/order_user_info.service");
 const OrderUserInfo = require("../models/order_user_info.model");
 const ReserTable = require("../models/reservation_table.model");
 const ItemOrders = require("../models/item_order.model");
+const emailService = require("../services/sendmail.service")
 
 const { Sequelize } = require("sequelize");
 
@@ -191,6 +192,9 @@ const createOrder = async (req, res) => {
           phone: phone,
         });
       }
+      console.log(email)
+
+      await emailService.sendOrderConfirmationEmail(email, name, newOrder);
       // Commit transaction khi tất cả các thao tác thành công
       await transaction.commit();
 

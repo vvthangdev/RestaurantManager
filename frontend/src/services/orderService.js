@@ -17,22 +17,46 @@ export const createOrder = async order => {
 
 export const getAllOrders = async () => {
 
-    const res = await axios.get("/orders");
+    const res = await axios.get("/orders/get_all_orders").catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return res.data;
 }
 export const deleteOrderById = async (orderId) => {
-    const {data} = await axios.delete(`/orders/delete-order-byId/${orderId}`);
+    const {data} = await axios.delete(`/orders/delete-order-byId/${orderId}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return data;
 };
 
 export const getOrderById = async (orderId) => {
-    const {data} = await axios.get(`/orders/get-order-byId/${orderId}`);
+    const {data} = await axios.get(`/orders/get-order-byId/${orderId}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     console.log(data);
     return data;
 };
 
 export const updateOrder = async (orderId, order) => {
-    await axios.put(`/orders/update-evaluate/${orderId}`, order);
+    await axios.put(`/orders/update-evaluate/${orderId}`, order).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
 };
 // export const getNewOrderForCurrentUser = async () => {
 //     const { data } = await axios.get('/api/preorder/newOrderForCurrentUser');

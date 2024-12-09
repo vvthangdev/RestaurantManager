@@ -8,7 +8,7 @@ import Title from "../../components/Title/Title";
 import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { deleteAdminById, getAllAdmins, searchAdmin } from "../../services/adminService";
 import { deleteTableByTableNumber, getAllTables } from "../../services/tableService";
 import { tab } from "@testing-library/user-event/dist/tab";

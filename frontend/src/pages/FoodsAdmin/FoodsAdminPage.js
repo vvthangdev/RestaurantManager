@@ -9,7 +9,7 @@ import Title from "../../components/Title/Title";
 import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 
 const FoodAdminPage = () => {
     const [foods, setFoods] = useState([]);

@@ -45,7 +45,8 @@ const getContactById = async (req, res) => {
 const deleteContactById = async (req, res) => {
     try {
         const {contactId} = req.params;
-        const contact = await Contact.findAll({where : {
+        console.log(contactId);
+        const contact = await Contact.findOne({where : {
             id : contactId,
         }});
         if(contact){
@@ -57,6 +58,9 @@ const deleteContactById = async (req, res) => {
                 message: "Contact deleted successfully!",
                 });
             return;
+        }else {
+
+            throw new Error("Contact not found");
         }
     }catch (error) {
         res.status(500).json({

@@ -35,6 +35,14 @@ a.add_food:hover {
     font-weight: 500;
 
 }
+.list_item>div {
+    white-space: nowrap;
+    /* Không cho nội dung xuống dòng */
+    overflow: hidden;
+    /* Ẩn phần nội dung thừa */
+    text-overflow: ellipsis;
+    /* Hiển thị "..." khi nội dung bị cắt */
+}
 
 .list_item {
     display: grid;

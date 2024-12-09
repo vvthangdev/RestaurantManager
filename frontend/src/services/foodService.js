@@ -23,15 +23,33 @@ export const getById = async (foodId) => {
 };
 
 export const deleteFoodById = async (foodId) => {
-    const {data} = await axios.delete(`/api/admin/deletefood/${foodId}`);
+    const {data} = await axios.delete(`/api/admin/deletefood/${foodId}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return data;
 }
 
 export const updateFood = async (foodId, food) => {
-    await axios.put(`/api/admins/updatefood/${foodId}`, food);
+    await axios.put(`/api/admins/updatefood/${foodId}`, food).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
 }
 
 export const addFood = async (food) => {
-    const {data} = await axios.post("/api/admin/createfood", food);
+    const {data} = await axios.post("/api/admin/createfood", food).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return data;
 }

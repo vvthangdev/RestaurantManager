@@ -35,7 +35,14 @@ a.add_food:hover {
     align-items: center;
     justify-content: center;
 }
-
+.list_item>div {
+    white-space: nowrap;
+    /* Không cho nội dung xuống dòng */
+    overflow: hidden;
+    /* Ẩn phần nội dung thừa */
+    text-overflow: ellipsis;
+    /* Hiển thị "..." khi nội dung bị cắt */
+}
 .list_item img {
     width: 4rem;
     height: 4rem;

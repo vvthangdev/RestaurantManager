@@ -7,14 +7,13 @@ import classes from "./accountsAdmin.module.css";
 import Title from "../../components/Title/Title";
 import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
-import { FaTrash, FaEdit } from 'react-icons/fa';
-import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+import { FaTrash, FaEdit, FaShieldAlt } from 'react-icons/fa';
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { deleteAdminById, getAllAdmins, searchAdmin } from "../../services/adminService";
 
 const AccountsAdmin = () => {
     const [admins, setAdmins] = useState([]);
     const {searchTerm} = useParams();
-
     useEffect(() => {
         const loadAdmins = searchTerm ? searchAdmin(searchTerm) : getAllAdmins();
         loadAdmins.then(admins => {
@@ -56,24 +55,28 @@ const AccountsAdmin = () => {
                         Thêm Account +
                     </Link>
                     <div className={classes.list_item_title}>
-                        <div>Ảnh</div>
+                        {/* <div>Ảnh</div> */}
                         <div>Tên</div>
                         <div>Vị trí</div>
                         <div>Email</div>
                         <div>Số điện thoại</div>
                         <div>Sửa/Xóa</div>
+                        <div>Đổi mật khẩu</div>
                     </div>
                     {admins &&
                         admins.map(admin => (
                             <div key={admin.id} className={classes.list_item}>
-                                        <img src={admin.image} alt={admin.name} />
+                                        {/* <img src={admin.image} alt={admin.name} /> */}
                                         <div>{admin.name}</div>
-                                        <div>{admin.role}</div>
+                                        <div>{admin.isAdmin ? "ADMIN" : "STAFF"}</div>
                                         <div>{admin.email}</div>
                                         <div className={classes.phone}>{admin.phone}</div>
                                         <div className={classes.actions}>
                                             <Link to={'/admin/editaccount/' + admin.id} ><FaEdit className={classes.edit}/></Link>
                                             <Link onClick={() => deleteAdmin(admin)} ><FaTrash className={classes.delete}/></Link>
+                                        </div>
+                                        <div className={classes.actions}>
+                                            <Link to={'/admin/changepassword' + admin.id} ><FaShieldAlt className={classes.password}/></Link>
                                         </div>
                                     </div>
                         ))

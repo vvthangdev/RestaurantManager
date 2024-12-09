@@ -2,16 +2,26 @@ import React, { Children } from 'react';
 import { useAuth } from '../../hooks/useAuth';
 import NotFound from '../NotFound/NotFound';
 import AuthRoute from '../AuthRoute/AuthRoute';
+import HeaderFoodsAdminPage from '../HeaderFoodsAdmin/HeaderAdmin';
+import HeaderAdmin from '../HeaderFoodsAdmin/HeaderAdmin';
 
 const AdminRoute = ({children}) => {
-    const {user} = useAuth();
-    return user.isAdmin ? (
-        children
+    const {admin} = useAuth();
+    return admin ? (
+        admin.isAdmin ? children :
+        <>
+            <HeaderAdmin/>
+            <NotFound
+                linkRoute="/admin/dashboard"
+                linkText="Trở về trang Điều khiển"
+                message="Bạn không có quyền truy nhập trang này!"
+            />
+        </>
     ) : (
         <NotFound
-            linkRoute="/dashboard"
-            linkText="Go to Dashboard"
-            message="You don't have access to this page"
+            linkRoute="/menu"
+            linkText="Trở về trang Thực đơn"
+            message="Bạn không có quyền truy nhập trang này!"
         />
     )
     

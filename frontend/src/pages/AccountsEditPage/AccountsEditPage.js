@@ -9,6 +9,7 @@ import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import { addAdmin, getAdminById, updateAdmin } from "../../services/adminService";
+import HeaderAdmin from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 const AccountsEditPage = () => {
     const {adminId} = useParams();
     //const [image, setImage] = useState();
@@ -38,6 +39,7 @@ const AccountsEditPage = () => {
         if(isEditMode){
             const confirmed = window.confirm("Bạn có chắc muốn thay đổi không?");
             if(!confirmed) return;
+            console.log(adminData);
             await updateAdmin(adminId, adminData);
             toast.success(`"${adminData.name}" Thay đổi thành công!`);
             navigate('/admin/accounts', {replace : true});
@@ -63,7 +65,7 @@ const AccountsEditPage = () => {
 
     return (
         <>
-            <Header/>
+            <HeaderAdmin/>
             <div className={classes.container}>
                 <div className={classes.content}>
                     <Title title={isEditMode ? 'Sửa thông tin' : 'Thêm Account'} color = {"black"} margin={"1rem 0 0 0"}/>
@@ -97,12 +99,13 @@ const AccountsEditPage = () => {
                             error={errors.password}
                         />
                         }
-                        <Input
+                        {/* <Input
                             type="text"
                             label="Vai trò"
-                            {...register('role', { required: true })}
+                            {...register('role',)}
                             error={errors.role}
-                        />
+                        /> */}
+                        <Input label="Admin" type="checkbox" {...register('isAdmin')} />
 
 
                         <Input

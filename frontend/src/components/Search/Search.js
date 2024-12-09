@@ -32,6 +32,6 @@ export default function Search({
             onKeyUp={e => e.key === 'Enter' && search()}
             value = {term}   
         />
-        <button onClick = {search}>Search</button>
+        <button onClick = {search}>Tìm kiếm</button>
     </div>
 }

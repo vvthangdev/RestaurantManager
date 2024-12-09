@@ -16,25 +16,25 @@ export default function Header(){
                     to="/menu"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    MENU    
+                    Thực đơn   
                 </NavLink>
                 <NavLink
                     to="/contact"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    CONTACT
+                    Liên hệ
                 </NavLink>
                 <NavLink
                     to="/infor"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    INFOR
+                    Thông tin
                 </NavLink>
                 <NavLink
                     to="/order"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    ORDER
+                    Đặt bàn
                 </NavLink>
             </nav>
         </div>

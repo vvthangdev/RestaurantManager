@@ -3,14 +3,15 @@ const userMiddleware = require("../middlewares/user.middleware.js");
 const adminController = require("../controllers/admin.controller.js");
 const userUtil = require("../utils/user.util.js");
 const authMiddware = require("../middlewares/auth.middleware.js");
-
+const admin = require("../middlewares/admin.mid.js");
+const auth = require('../middlewares/auth.mid.js');
 const router = express.Router();
-router.get("/admins", adminController.getAllAdmins);
-router.get("/admins/account/:adminId", adminController.getAdminById);
-router.get("/admins/search/:words", adminController.searchAdmins);
-router.delete("/admins/deleteaccount/:adminId", adminController.deleteAdminById);
-router.post("/admins/createaccount", adminController.createNewAdmin);
-router.put("/admins/updateaccount/:adminId", adminController.updateAdminById);
+router.get("/admins", admin, adminController.getAllAdmins);
+router.get("/admins/account/:adminId", admin, adminController.getAdminById);
+router.get("/admins/search/:words", admin, adminController.searchAdmins);
+router.delete("/admins/deleteaccount/:adminId", admin, adminController.deleteAdminById);
+router.post("/admins/createaccount", admin, adminController.createNewAdmin);
+router.put("/admins/updateaccount/:adminId", admin, adminController.updateAdminById);
 router.post("/admins/login", adminController.login)
 // router.use(authMiddware.authenticateToken);
 // router.use(authMiddware.adminRoleAuth);

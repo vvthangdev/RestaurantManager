@@ -114,12 +114,14 @@ const Contact = () => {
             const contact = await createContact(contactData);
             console.log(contact);
             toast.success(`"Đã gửi liên hệ thành công!`);
+            
             navigate('/menu', {replace : true});
         }catch (error){
+            console.log(error);
             if (error.errorMessage) {
                 toast.error(error.errorMessage); // Hiển thị thông báo lỗi nếu có
             } else {
-                toast.error("Có lỗi xảy ra khi gửi liên hệ.");
+                //toast.error("Có lỗi xảy ra khi gửi liên hệ.");
             }
         }
     };

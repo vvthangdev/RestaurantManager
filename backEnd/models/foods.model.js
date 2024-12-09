@@ -28,6 +28,8 @@ const Foods = sequelize.define(
       }
   },
   {
+    charset: 'utf8mb4', // Mã hóa UTF-8 cho bảng
+    collate: 'utf8mb4_unicode_ci', // Chỉ định phương pháp so sánh chuỗi
     tableName: "foods", // Matches the existing table name in the database
     timestamps: false, // Disable timestamps if your table does not have `createdAt` and `updatedAt` fields
   }

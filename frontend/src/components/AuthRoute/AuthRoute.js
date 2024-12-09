@@ -3,8 +3,8 @@ import {useAuth} from "../../hooks/useAuth";
 
 const AuthRoute = ({children}) => {
     const location = useLocation();
-    const {user} = useAuth();
-    return user ? (children) : (
+    const {admin} = useAuth();
+    return admin ? (children) : (
         <Navigate to={`/login?returnUrl=${location.pathname}`} replace />
     );
 }

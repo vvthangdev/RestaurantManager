@@ -15,9 +15,14 @@ module.exports = {
       },
       role: {
         type: Sequelize.ENUM("STAFF", "ADMIN"),
-        allowNull: false,
+        allowNull: true,
         defaultValue: "STAFF",
     },
+      isAdmin : {
+        type : Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      },
       avatar: {
         type: Sequelize.STRING(255),
         allowNull: true

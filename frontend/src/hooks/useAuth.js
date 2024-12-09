@@ -2,9 +2,11 @@ import { useState, createContext, useContext, Children, useEffect } from "react"
 import * as userService from "../services/userService";
 import {toast} from 'react-toastify';
 import * as adminService from "../services/adminService";
+import { useNavigate } from "react-router-dom";
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({children}) => {
+    const navigate = useNavigate();
     const [admin, setAdmin] = useState(adminService.getAdmin());
     const [foods, setFoods] = useState(() => {
         // Lấy giỏ hàng từ localStorage nếu có
@@ -23,6 +25,7 @@ export const AuthProvider = ({children}) => {
             return admin;
         } catch(error){
             toast.error(error.response.data);
+            return false;
         }
     };
     const addFoodToCart = (foodItem) => {
@@ -37,6 +40,7 @@ export const AuthProvider = ({children}) => {
         setFoods([]);
     };
     const logout = () => {
+        navigate('/menu')
         adminService.logout();
         setAdmin(null);     
     }
@@ -46,7 +50,9 @@ export const AuthProvider = ({children}) => {
             return foodsOrder;
         }
     };
+    const changePassword = () => {
 
+    }
     return (
         <AuthContext.Provider value = {{
             admin, 
@@ -55,6 +61,7 @@ export const AuthProvider = ({children}) => {
             addFoodToCart,
             removeFoodFromCart,
             getFoodsOder,
+            changePassword,
             clearCart}}>
             {children}
         </AuthContext.Provider>

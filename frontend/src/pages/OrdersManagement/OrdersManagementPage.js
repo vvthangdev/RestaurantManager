@@ -8,7 +8,7 @@ import Title from "../../components/Title/Title";
 import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { deleteAdminById, getAllAdmins, searchAdmin } from "../../services/adminService";
 import { deleteTableByTableNumber, getAllTables } from "../../services/tableService";
 import { tab } from "@testing-library/user-event/dist/tab";
@@ -68,9 +68,10 @@ const OrdersManagementPage = () => {
                     </Link> */}
                     <div className={classes.list_item_title}>
                         <div>Mã đơn hàng</div>
-                        {/* <div>Tên khách hàng</div>
-                        <div>Số điện thoại</div> */}
-                        <di>Số lượng người</di>
+                        <div>Tên khách hàng</div>
+                        <div>Số điện thoại</div>
+                        <div>Email</div>
+                        <di>Số lượng</di>
                         <div>Thời gian</div>
                         <div>Trạng thái</div>
                         <div>Sửa/Xóa</div>
@@ -79,6 +80,9 @@ const OrdersManagementPage = () => {
                         orders.map(order => (
                             <div key={order.id} className={classes.list_item}>
                                 <div>{order.id}</div>
+                                <div>{order.name}</div>
+                                <div>{order.phone}</div>
+                                <div>{order.email}</div>
                                 <div>{order.num_people}</div>
                                 <div>{formattedDate(order.time)}</div>
                                 <div>{order.status}</div>

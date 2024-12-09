@@ -17,9 +17,15 @@ const Admin = sequelize.define(
       },
       role: {
         type: DataTypes.ENUM("STAFF", "ADMIN"),
-        allowNull: false,
-        defaultValue: "ADMIN",
+        allowNull: true,
+        defaultValue: "STAFF",
     },
+      isAdmin : {
+        type : DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
+      }
+    ,
       avatar: {
         type: DataTypes.STRING(255),
         allowNull: true

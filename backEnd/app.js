@@ -5,8 +5,8 @@ const { Server } = require("socket.io");
 const { createServer } = require("node:http");
 const server = createServer(app);
 const io = new Server(server);
-const Message = require("./models/message.js");
-const conversationService = require("./services/conversation.service.js");
+// const Message = require("./models/message.js");
+// const conversationService = require("./services/conversation.service.js");
 require("dotenv").config();
 const sequelize = require("./config/db.config.js");
 const foodRoutes = require("./routes/food.routes.js")

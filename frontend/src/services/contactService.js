@@ -1,7 +1,13 @@
 import axios from "axios";
 
 export const getAllContacts = async () => {
-    const res = await axios.get('/contacts/getAll');
+    const res = await axios.get('/contacts/getAll').catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return res.data.contacts;
 };
 export const createContact = async (contact) => {
@@ -10,11 +16,24 @@ export const createContact = async (contact) => {
 };
 
 export const deleteContactById = async (contactId) => {
-    const {data} = await axios.delete("/contacts/deleteContactById", contactId);
+    console.log(contactId);
+    const {data} = await axios.delete(`/contacts/deleteContactById/${contactId}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return data;
 }
 
 export const getContactById = async (contactId) => {
-    const {data} = await axios.get("/contacts/getContactById", contactId);
+    const {data} = await axios.get("/contacts/getContactById", contactId).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
     return data;
 }

@@ -6,8 +6,8 @@ const PASSWORD_HASH_SALT_ROUNDS = 10;
 const getAllAdmins = async () => {
     try{
         const admins = await Admin.findAll({
-            attributes : ['id', 'name', 'role', 'email', 'phone'],
-            where : {"role" : "STAFF"},
+            attributes : ['id', 'name', 'role', 'email', 'phone', 'isAdmin'],
+            // where : {"role" : "STAFF"},
         });
         return admins;
     }catch (error){
@@ -95,10 +95,8 @@ const updateAdmin = async (adminId, admin) => {
         if(!adminUpdate){
             throw new Error("Admin not found"); 
         }
-        if(adminUpdate.role === "MANAGER"){
-            return false;
-        }
-        console.log(adminUpdate);
+        
+        console.log(admin.isAdmin);
         await adminUpdate.update({
             name: admin.name || adminUpdate.name,
             avatar: admin.avatar || adminUpdate.avatar,
@@ -106,6 +104,7 @@ const updateAdmin = async (adminId, admin) => {
             email: admin.email || adminUpdate.email,
             phone: admin.phone || adminUpdate.phone,
             password: admin.password || adminUpdate.password,
+            isAdmin : admin.isAdmin,
             refresh_token: admin.refresh_token || adminUpdate.refresh_token,
         });
         return {
@@ -138,8 +137,14 @@ const login = async (email, password) => {
                 email : email,
             }
         });
-        if(admin && (await bcrypt.compare(password, admin.password))){
-            return generateTokenResponse(admin);
+        const adminNew = {
+            id : admin.id,
+            email : admin.email,
+            name : admin.name,
+            isAdmin : admin.isAdmin,
+        };
+        if(adminNew && (await bcrypt.compare(password, admin.password))){
+            return generateTokenResponse(adminNew);
         }
         
         throw new Error("Invalid email or password");
@@ -158,7 +163,7 @@ const generateTokenResponse = admin => {
     {
       id: admin.id,
       email: admin.email,
-      role: admin.role,
+      isAdmin: admin.isAdmin,
     },
     process.env.JWT_SECRET,
     {
@@ -170,7 +175,7 @@ const generateTokenResponse = admin => {
     id: admin.id,
     email: admin.email,
     name: admin.name,
-    role: admin.role,
+    isAdmin: admin.isAdmin,
     token,
   };
 };

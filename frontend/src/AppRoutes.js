@@ -18,6 +18,10 @@ import TableEditPage from "./pages/TableEditPage/TableEditPage";
 import OrdersManagementPage from "./pages/OrdersManagement/OrdersManagementPage";
 import OrderEditPage from "./pages/OrderEditPage/OrderEditPage";
 import ContactManagementPage from "./pages/ContactManagement/ContactManagement";
+import Dashboard from "./pages/Dashboard/Dashboard";
+import AuthRoute from "./components/AuthRoute/AuthRoute";
+import AdminRouteExport from "./components/AdminRoute/AdminRoute";
+import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage";
 export default function AppRoutes(){
     return(
        
@@ -30,21 +34,76 @@ export default function AppRoutes(){
             <Route path="/order" element={<Order/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/infor" element={<Infor/>} />
-            <Route path="/admin/foods" element={<FoodAdminPage/>} />
-            <Route path="/admin/foods/:searchTerm" element={<FoodAdminPage/>} />
-            <Route path="/admin/foods" element={<FoodEditPage/>} />
-            <Route path="/admin/addfood" element={<FoodEditPage/>} />
-            <Route path="/admin/editfood/:foodId" element={<FoodEditPage/>} />
-            <Route path="/admin/accounts" element={<AccountsAdmin/>} />
-            <Route path="/admin/accounts/:searchTerm" element={<AccountsAdmin/>} />
-            <Route path="/admin/addaccount" element={<AccountsEditPage/>} />
-            <Route path="/admin/editaccount/:adminId" element={<AccountsEditPage/>} />
-            <Route path="/admin/tablemanagement" element={<TableManagementPage/>} />
-            <Route path="/admin/addtable" element={<TableEditPage/>} />
-            <Route path="/admin/edittable/:table_number" element={<TableEditPage/>} />
-            <Route path="/admin/ordersmanagement" element={<OrdersManagementPage/>} />
-            <Route path="/admin/editorder/:orderId" element={<OrderEditPage/>} />
-            <Route path="/admin/contactsmanagement" element={<ContactManagementPage/>} />
+            <Route path="/admin/foods" element={
+                <AuthRoute>
+                    <FoodAdminPage/>
+                </AuthRoute>} />
+            <Route path="/admin/foods/:searchTerm" element={
+                <AuthRoute>
+                    <FoodAdminPage/>
+                </AuthRoute>} />
+            {/* <Route path="/admin/foods" element={<FoodEditPage/>} /> */}
+            <Route path="/admin/addfood" element={
+                <AuthRoute>
+                    <FoodEditPage/>
+                </AuthRoute>} />
+            <Route path="/admin/editfood/:foodId" element={
+                <AuthRoute>
+                    <FoodEditPage/>
+                </AuthRoute>} />
+            <Route path="/admin/accounts" element={
+                <AdminRouteExport>
+                    <AccountsAdmin/>
+                </AdminRouteExport>
+                } />
+            <Route path="/admin/accounts/:searchTerm" element={ 
+                <AdminRouteExport>
+                    <AccountsAdmin/>
+                </AdminRouteExport>} />
+            <Route path="/admin/addaccount" element={ 
+                <AdminRouteExport>
+                    <AccountsEditPage/>
+                </AdminRouteExport>} />
+            <Route path="/admin/editaccount/:adminId" element={
+                <AdminRouteExport>
+                    <AccountsEditPage/>
+                </AdminRouteExport>} />
+            <Route path="/admin/tablemanagement" element={
+                <AuthRoute>
+                    <TableManagementPage/>
+                </AuthRoute>
+                } />
+            <Route path="/admin/addtable" element={
+                <AuthRoute>
+                    <TableEditPage/>
+                </AuthRoute>} />
+            <Route path="/admin/edittable/:table_number" element={
+                <AuthRoute>
+                    <TableEditPage/>
+                </AuthRoute>
+            } />
+            <Route path="/admin/ordersmanagement" element={
+                <AuthRoute>
+                    <OrdersManagementPage/>
+                </AuthRoute>
+                } />
+            <Route path="/admin/editorder/:orderId" element={
+                <AuthRoute>
+                    <OrderEditPage/>
+                </AuthRoute>} />
+            <Route path="/admin/contactsmanagement" element={
+                <AuthRoute>
+                    <ContactManagementPage/>
+                </AuthRoute>
+                } />
+            <Route path="/admin/dashboard" element={
+                <AuthRoute>
+                    <Dashboard/>
+                </AuthRoute>
+                } />
+            <Route path="/admin/changepassword" element={
+                <ChangePassword/>
+                } />
         </Routes>
         
         

@@ -123,9 +123,10 @@ const LoginPage = () => {
     const returnUrl = params.get('returnUrl');
 
     useEffect(() => {
-        if (!admin) return;
-
-            returnUrl ? navigate(returnUrl) : navigate('/admin/accounts');
+        const adminExist = localStorage.getItem('admin');
+        if (!adminExist) return;
+        
+        returnUrl ? navigate(returnUrl) : navigate('/admin/dashboard');
         }, [admin]);
 
     const submit = async ({ email, password }) => {
@@ -151,12 +152,12 @@ const LoginPage = () => {
         if(!password){
             setError("Vui lòng nhập Mật khẩu!");
             return;
-        }else if(password.length < 6){
+        }else if(password.length <1){
             setError("Mật khẩu có độ dài ít nhất là 6!");
             return;
         }
         const resutlt = await login(email, password);
-        if(resutlt){
+        if(!resutlt){
             return;
 
         }else{

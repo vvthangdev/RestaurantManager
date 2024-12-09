@@ -5,13 +5,13 @@ import { logout } from '../../services/userService';
 import { useAuth } from '../../hooks/useAuth';
 //import { useAuth } from '../../hooks/useAuth';
 
-export default function HeaderFoodsAdminPage() {
+export default function HeaderAdmin() {
     const navigate = useNavigate();
 
     const { admin, logout } = useAuth();
     useEffect (() => {
         if(!admin) navigate('/menu');
-    })
+    });
     //const admin = JSON.parse(localStorage.getItem('admin')); //Do tra ve string
     
     return (
@@ -20,16 +20,16 @@ export default function HeaderFoodsAdminPage() {
                 &&
             <header className={classes.header}>
                 <div className={classes.container}>
-                    <Link to = '/' className = {classes.logo}>
+                    <Link to = '/admin/dashboard' className = {classes.logo}>
                         <img src = {`${process.env.PUBLIC_URL}/icons/logo-hust.png`} alt = "HUST"/>
-                        <span>Quán nhậu Bách Khoa</span>
+                        <span>Trang chủ</span>
                     
                     </Link> 
                     <ul>
                         <li className={classes.menu_container}>
                             <div className={classes.menu}>
                                 <span className={classes.name}>{admin.name}</span>
-                                <button className={classes.logout} onClick={logout}>SIGN OUT</button>
+                                <button className={classes.logout} onClick={logout}>Đăng xuất</button>
                             </div>  
                         </li>
                     </ul>

@@ -3,7 +3,6 @@ const {Op, Model} = require("sequelize");
 require("dotenv").config();
 const adminService = require("../services/admin.service.js");
 const getAllAdmins = async (req, res) => {
-    
     try{
         const admins = await adminService.getAllAdmins();
 

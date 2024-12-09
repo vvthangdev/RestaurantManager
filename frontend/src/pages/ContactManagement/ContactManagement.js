@@ -8,7 +8,7 @@ import Title from "../../components/Title/Title";
 import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
 import { FaTrash, FaEdit } from 'react-icons/fa';
-import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { deleteAdminById, getAllAdmins, searchAdmin } from "../../services/adminService";
 import { deleteTableByTableNumber, getAllTables } from "../../services/tableService";
 import { tab } from "@testing-library/user-event/dist/tab";
@@ -35,7 +35,7 @@ const ContactManagementPage = () => {
         if(!confirmed) return;
 
         const data = await deleteContactById(contact.id);
-        toast.success(`"${contact.idr}" Đã Được Xóa!`);
+        toast.success(`Phản hồi của "${contact.name}" Đã Được Xóa!`);
         setContacts(contacts.filter(c => c.id !== contact.id));
     };
 

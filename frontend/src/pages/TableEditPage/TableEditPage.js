@@ -9,7 +9,7 @@ import Input from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderFoodsAdmin";
+import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { addTable, getTableByTableNumber, updateTable } from "../../services/tableService";
 
 const TableEditPage = () => {

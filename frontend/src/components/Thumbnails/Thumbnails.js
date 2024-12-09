@@ -35,7 +35,7 @@ export default function Thumbnails({foods}){
                     ))}
                 </ul>
             </div>
-            <div className={classes.classify}>
+            {/* <div className={classes.classify}>
                 <div className={classes.name_classify}>Combo</div>            
                 <ul className={classes.list}>
                     {foods.map(food => (
@@ -88,7 +88,7 @@ export default function Thumbnails({foods}){
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
         </div>
     );
 }

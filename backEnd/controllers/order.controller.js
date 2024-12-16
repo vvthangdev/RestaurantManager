@@ -333,42 +333,42 @@ const createShipOrder = async (req, res) => {
   }
 };
 
-const getAllOrderInfo = async (req, res) => {
-  try {
-    const { id } = req.body;  // Dữ liệu id lấy từ body của request
+// const getAllOrderInfo = async (req, res) => {
+//   try {
+//     const { id } = req.body;  // Dữ liệu id lấy từ body của request
 
-    // Kiểm tra xem id có hợp lệ không
-    if (!id) {
-      return res.status(400).json({ error: "Order ID is required" });
-    }
+//     // Kiểm tra xem id có hợp lệ không
+//     if (!id) {
+//       return res.status(400).json({ error: "Order ID is required" });
+//     }
 
-    // Tìm thông tin liên quan đến đặt bàn
-    const reserTableInfo = await ReserTable.findAll({
-      where: { reservation_id: id },
-    });
+//     // Tìm thông tin liên quan đến đặt bàn
+//     const reserTableInfo = await ReserTable.findAll({
+//       where: { reservation_id: id },
+//     });
 
-    // Tìm các đơn hàng liên quan đến order_id
-    const itemOrders = await ItemOrders.findAll({
-      where: { order_id: id },
-    });
+//     // Tìm các đơn hàng liên quan đến order_id
+//     const itemOrders = await ItemOrders.findAll({
+//       where: { order_id: id },
+//     });
 
-    // Nếu không có dữ liệu trả về, trả lại thông báo không tìm thấy
-    if (!reserTableInfo.length && !itemOrders.length) {
-      return res.status(404).json({ error: "No data found for this order ID" });
-    }
+//     // Nếu không có dữ liệu trả về, trả lại thông báo không tìm thấy
+//     if (!reserTableInfo.length && !itemOrders.length) {
+//       return res.status(404).json({ error: "No data found for this order ID" });
+//     }
 
-    // Trả về thông tin tìm được
-    return res.status(200).json({
-      reserTableInfo,
-      itemOrders
-    });
+//     // Trả về thông tin tìm được
+//     return res.status(200).json({
+//       reserTableInfo,
+//       itemOrders
+//     });
 
-  } catch (error) {
-    // Xử lý lỗi nếu có
-    console.error("Error fetching order info:", error);
-    return res.status(500).json({ error: "Error fetching all order info!" });
-  }
-};
+//   } catch (error) {
+//     // Xử lý lỗi nếu có
+//     console.error("Error fetching order info:", error);
+//     return res.status(500).json({ error: "Error fetching all order info!" });
+//   }
+// };
 const getAllOrderInfo = async (req, res) => {
   try {
     const { id } = req.params;  // Dữ liệu id lấy từ body của request

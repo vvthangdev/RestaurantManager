@@ -46,10 +46,6 @@ const Admin = sequelize.define(
       type: DataTypes.STRING(255),
       allowNull: false,
     },
-    refresh_token: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-    },
   },
   {
     charset: 'utf8mb4', // Mã hóa UTF-8 cho bảng

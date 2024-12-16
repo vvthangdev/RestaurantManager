@@ -1,7 +1,6 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/db.config');
 //const User = require('./user.model');  // Đảm bảo đã import mô hình User
-const OrderUserInfo = require('./order_user_info.model')
 const OrderDetail = sequelize.define('OrderDetail', {
   id: {
     type: DataTypes.INTEGER,

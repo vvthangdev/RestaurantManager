@@ -22,7 +22,7 @@ router.get('/get-all-orders', auth, orderController.getAllOrdersOfCustomer);
 router.get('/get_all_orders',  auth, orderController.getAllOrdersNew);
 router.get('/get-order-byId/:orderId', auth, orderController.getOrderById);
 router.delete('/delete-order-byId/:orderId',  auth, orderController.deleteOrderById);
-
+router.get("/get-all-order-info/:id", auth, orderController.getAllOrderInfo);
 router.put("/update-evaluate/:id", orderController.updateOrderNew);
 
 

@@ -5,7 +5,8 @@ const sequelize = require("../config/db.config"); // Đảm bảo import sequeli
 const { createOrderUserInfo } = require("../services/order_user_info.service");
 const OrderUserInfo = require("../models/order_user_info.model");
 const { Sequelize } = require('sequelize');
-
+const ReserTable = require("../models/reservation_table.model");
+const ItemOrders = require("../models/item_order.model");
 const getAllOrders = async (req, res) => {
   try {
     const orderDetail = await OrderDetail.findAll(
@@ -87,8 +88,7 @@ const getAllOrdersOfCustomer = async (req, res) => {
 
 
 const createOrder = async (req, res) => {
-    console.log(3);
-    console.log(req.body);
+
   const transaction = await sequelize.transaction(); // Khởi tạo transaction
   try {
     let { email, name, phone, start_time, num_people, foods, ...orderData } = req.body; // Số lượng khách và danh sách các món hàng
@@ -312,7 +312,42 @@ const createShipOrder = async (req, res) => {
       res.status(500).json({ error: "Error happend when create ship order 2"});
   }
 };
+const getAllOrderInfo = async (req, res) => {
+  try {
+    const { id } = req.params;  // Dữ liệu id lấy từ body của request
 
+    // Kiểm tra xem id có hợp lệ không
+    if (!id) {
+      return res.status(400).json({ error: "Order ID is required" });
+    }
+
+    // Tìm thông tin liên quan đến đặt bàn
+    const reserTableInfo = await ReserTable.findAll({
+      where: { reservation_id: id },
+    });
+
+    // Tìm các đơn hàng liên quan đến order_id
+    const itemOrders = await ItemOrders.findAll({
+      where: { order_id: id },
+    });
+
+    // Nếu không có dữ liệu trả về, trả lại thông báo không tìm thấy
+    if (!reserTableInfo.length && !itemOrders.length) {
+      return res.status(404).json({ error: "No data found for this order ID" });
+    }
+
+    // Trả về thông tin tìm được
+    return res.status(200).json({
+      reserTableInfo,
+      itemOrders
+    });
+
+  } catch (error) {
+    // Xử lý lỗi nếu có
+    console.error("Error fetching order info:", error);
+    return res.status(500).json({ error: "Error fetching all order info!" });
+  }
+};
 module.exports = {
   getAllOrders,
   createOrder,
@@ -324,4 +359,5 @@ module.exports = {
   getOrderById,
   deleteOrderById,
   getAllOrdersNew,
+  getAllOrderInfo,
 };

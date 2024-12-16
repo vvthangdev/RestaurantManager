@@ -22,6 +22,8 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import AuthRoute from "./components/AuthRoute/AuthRoute";
 import AdminRouteExport from "./components/AdminRoute/AdminRoute";
 import ChangePassword from "./pages/ChangePasswordPage/ChangePasswordPage";
+import OrderDetailPage from "./pages/OrderDetailPage/OrderDetailPage";
+import OrderTempPage from "./pages/OrderTempPage/OrderTempPage";
 export default function AppRoutes(){
     return(
        
@@ -34,6 +36,7 @@ export default function AppRoutes(){
             <Route path="/order" element={<Order/>} />
             <Route path="/login" element={<LoginPage/>} />
             <Route path="/infor" element={<Infor/>} />
+            <Route path="/ordertemp" element={<OrderTempPage/>} />
             <Route path="/admin/foods" element={
                 <AuthRoute>
                     <FoodAdminPage/>
@@ -101,9 +104,17 @@ export default function AppRoutes(){
                     <Dashboard/>
                 </AuthRoute>
                 } />
-            <Route path="/admin/changepassword" element={
-                <ChangePassword/>
+            <Route path="/admin/changepassword/:adminId" element={
+                <AdminRouteExport>
+                    <ChangePassword/>
+                </AdminRouteExport>
                 } />
+            <Route path="/admin/orderinfordetail/:searchTerm" element={
+                <AuthRoute> 
+                    <OrderDetailPage/>
+                </AuthRoute>
+                }/>
+        
         </Routes>
         
         

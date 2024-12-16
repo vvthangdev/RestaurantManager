@@ -3,13 +3,14 @@ import { useAuth } from '../../hooks/useAuth';
 import classes from './dashboard.module.css';
 import { Link } from 'react-router-dom';
 import HeaderFoodsAdminPage from '../../components/HeaderFoodsAdmin/HeaderAdmin';
+import HeaderAdmin from '../../components/HeaderFoodsAdmin/HeaderAdmin';
 
 export default function Dashboard() {
   const { admin } = useAuth();
 
   return (
     <>
-        <HeaderFoodsAdminPage/>
+        <HeaderAdmin/>
         <div className={classes.container}>
         <div className={classes.menu}>
         {allItems

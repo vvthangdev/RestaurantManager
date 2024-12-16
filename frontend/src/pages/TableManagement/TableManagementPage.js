@@ -12,6 +12,7 @@ import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin"
 import { deleteAdminById, getAllAdmins, searchAdmin } from "../../services/adminService";
 import { deleteTableByTableNumber, getAllTables } from "../../services/tableService";
 import { tab } from "@testing-library/user-event/dist/tab";
+import HeaderAdmin from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 
 const TableManagementPage = () => {
     const [tables, setTables] = useState([]);
@@ -40,7 +41,7 @@ const TableManagementPage = () => {
 
     return (
         <>
-            <HeaderFoodsAdminPage />
+            <HeaderAdmin />
             <div className={classes.container}>
                 <div className={classes.list}>
 

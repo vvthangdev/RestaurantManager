@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
-import { addFood, getById, updateFood } from "../../services/foodService";
+import { addFood, getById, getByIdAdmin, updateFood } from "../../services/foodService";
 import { toast } from "react-toastify";
 import classes from './foodEditPage.module.css'
 import Title from "../../components/Title/Title";
@@ -27,7 +27,7 @@ const FoodEditPage = () => {
 
     useEffect(() => {
         if(!isEditMode) return;
-        getById(foodId).then(food => {
+        getByIdAdmin(foodId).then(food => {
             if(!food) return;
             reset(food);
             //setImage(food.image);
@@ -40,6 +40,7 @@ const FoodEditPage = () => {
         if(isEditMode){
             const confirmed = window.confirm("Bạn có chắc muốn thay đổi không?");
             if(!confirmed) return;
+            console.log(foodData);
             await updateFood(foodId, foodData);
             toast.success(`"${foodData.name}" Thay đổi thành công!`);
             navigate('/admin/foods', {replace : true});

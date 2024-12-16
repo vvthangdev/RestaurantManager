@@ -26,7 +26,7 @@ a.add_food:hover {
 .list_item_title {
     display: grid;
     grid-template-columns:
-        minmax(7rem, 10rem) minmax(7rem, 10rem) minmax(7rem, 10rem) minmax(7rem, 10rem) minmax(5rem, 7rem) minmax(10rem, 15rem) minmax(5rem, 7rem) minmax(5rem, 7rem) minmax(5rem, 7rem);
+        minmax(10rem, 17rem) minmax(10rem, 17rem) minmax(10rem, 17rem);
     font-size: 1.3rem;
     height: 5rem;
     align-items: center;
@@ -35,6 +35,7 @@ a.add_food:hover {
     font-weight: 500;
 
 }
+
 .list_item>div {
     white-space: nowrap;
     /* Không cho nội dung xuống dòng */
@@ -47,7 +48,7 @@ a.add_food:hover {
 .list_item {
     display: grid;
     grid-template-columns:
-        minmax(7rem, 10rem) minmax(7rem, 10rem) minmax(7rem, 10rem) minmax(7rem, 10rem) minmax(5rem, 7rem) minmax(10rem, 15rem) minmax(5rem, 7rem) minmax(5rem, 7rem) minmax(5rem, 7rem);
+        minmax(10rem, 17rem) minmax(10rem, 17rem) minmax(10rem, 17rem);
     font-size: 1.2rem;
     height: 5rem;
     align-items: center;
@@ -74,7 +75,10 @@ a.add_food:hover {
 .delete {
     color: #e72929;
 }
+.empty_message{
+    font-size: 1.5rem;
+}
 
-.detail {
-    color: darkblue;
+.btn {
+    margin: 2rem auto;
 }

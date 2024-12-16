@@ -31,7 +31,7 @@ export default function MenuPage(){
             dispatch({type: "FOODS_LOADED", payload: foods})
         });
         console.log(2);
-        console.log(loadFoods);
+        //console.log(loadFoods);
     }, [searchTerm]); //useEffect tranh goi API moi khi render, tranh anh huong render chinh
     return(
         <>

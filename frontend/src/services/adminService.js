@@ -14,6 +14,7 @@ export const getAllAdmins = async () => {
 };
 
 export const getAdminById = async (adminId) => {
+    console.log(adminId);
     const {data} = await axios.get(`/api/admins/account/${adminId}`).catch(error => {
     if (error.response && error.response.status === 401) {
         alert("Bạn không có đủ quyền để truy nhập trang này!");
@@ -66,6 +67,18 @@ export const deleteAdminById = async (adminId) => {
   });
     return data;
 };
+
+export const changePasswordById = async (adminId, password) => {
+    console.log(password);
+    const result = await axios.put(`/api/admins/changePassword/${adminId}`, password).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
+    return result;
+}
 
 export const login = async (email, password) => {
     console.log(email, password);

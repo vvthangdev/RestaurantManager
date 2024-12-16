@@ -11,6 +11,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { addTable, getTableByTableNumber, updateTable } from "../../services/tableService";
+import HeaderAdmin from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 
 const TableEditPage = () => {
     const {table_number} = useParams();
@@ -62,7 +63,7 @@ const TableEditPage = () => {
     
     return (
         <>
-            <HeaderFoodsAdminPage/>
+            <HeaderAdmin/>
             <div className={classes.container}>
                 <div className={classes.content}>
                     <Title title={isEditMode ? 'Sửa bàn' : 'Thêm bàn'} color = {"black"} margin={"1rem 0 0 0"}/>

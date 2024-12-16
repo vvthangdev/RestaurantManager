@@ -2,6 +2,9 @@ const Admin = require("../models/admins.model");
 const {Op, Model} = require("sequelize");
 require("dotenv").config();
 const adminService = require("../services/admin.service.js");
+const PASSWORD_HASH_SALT_ROUNDS = 10;
+const bcrypt = require("bcrypt");
+const { BAD_REQUEST } = require("../constants/httpStatus.js");
 const getAllAdmins = async (req, res) => {
     try{
         const admins = await adminService.getAllAdmins();
@@ -113,6 +116,30 @@ const login = async(req, res) => {
         });
     }
 }
+
+const changePassword = async (req, res) => {
+    const {adminId} = req.params;
+    const {currentPassword, newPassword} = req.body;
+    
+    const admin = await Admin.findOne({
+        where : {id : adminId},
+    });
+
+    if(!admin){
+        res.status(BAD_REQUEST).send('Thay đổi mật khẩu thất bại!');
+        return; 
+    }
+    if(currentPassword){
+        const equal = await bcrypt.compare(currentPassword, admin.password);
+        if (!equal) {
+          res.status(BAD_REQUEST).send('Mật khẩu hiện tại không chính xác!');
+          return;
+        }
+    }
+    admin.password = await bcrypt.hash(newPassword, PASSWORD_HASH_SALT_ROUNDS);
+    await admin.save();
+    res.send();
+}
 module.exports = {
     getAllAdmins,
     searchAdmins,
@@ -121,4 +148,5 @@ module.exports = {
     createNewAdmin,
     updateAdminById,
     login,
+    changePassword,
 }

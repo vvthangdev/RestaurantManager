@@ -18,8 +18,8 @@ function Infor(){
                                 <p>Quán nhậu nổi tiếng khu BKX</p>
                             </div>
                             <div className ={styles.infor_box_left_des}>
-                                <p>Hoho</p>
-                                <span>Description bla bla eh oh eh oh ec ec</span>
+                                <p>Hello World</p>
+                                <span>Nhà tôi 3 đời mở quán nhậu</span>
                             </div>
                             </div>
                         <div className={styles.infor_box_right}>
@@ -38,8 +38,8 @@ function Infor(){
                                 <p>Quán nhậu nổi tiếng khu BKX</p>
                             </div>
                             <div className ={styles.infor_box_left_des}>
-                                <p>Hoho</p>
-                                <span>Description bla bla eh oh eh oh ec ec</span>
+                                <p>Hello World</p>
+                                <span>Nhà tôi 3 đời mở quán nhậu</span>
                             </div>
                             </div>
                         <div className={styles.infor_box_right}>
@@ -61,8 +61,8 @@ function Infor(){
                                 <p>Quán nhậu nổi tiếng khu BKX</p>
                             </div>
                             <div className ={styles.infor_box_left_des}>
-                                <p>Hoho</p>
-                                <span>Description bla bla eh oh eh oh ec ec</span>
+                                <p>Hello World</p>
+                                <span>Nhà tôi 3 đời mở quán nhậu</span>
                             </div>
                             </div>
                         <div className={styles.infor_box_right}>

@@ -76,7 +76,7 @@ const AccountsAdmin = () => {
                                             <Link onClick={() => deleteAdmin(admin)} ><FaTrash className={classes.delete}/></Link>
                                         </div>
                                         <div className={classes.actions}>
-                                            <Link to={'/admin/changepassword' + admin.id} ><FaShieldAlt className={classes.password}/></Link>
+                                            <Link to={'/admin/changepassword/' + admin.id} ><FaShieldAlt className={classes.password}/></Link>
                                         </div>
                                     </div>
                         ))

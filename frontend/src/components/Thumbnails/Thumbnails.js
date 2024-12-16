@@ -8,7 +8,7 @@ export default function Thumbnails({foods}){
         
         <div>
             <div className={classes.classify}>
-                <div className={classes.name_classify}>Món ăn</div>            
+                <div className={classes.name_classify}>Món ăn và đồ uống</div>            
                 <ul className={classes.list}>
                     {foods.map(food => (
             

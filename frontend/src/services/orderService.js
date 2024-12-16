@@ -58,6 +58,18 @@ export const updateOrder = async (orderId, order) => {
     }
   });
 };
+
+
+export const getAllOrderInfo = async (orderId) => {
+    const {data} = await axios.get(`/orders/get-all-order-info/${orderId}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
+  return data;
+}
 // export const getNewOrderForCurrentUser = async () => {
 //     const { data } = await axios.get('/api/preorder/newOrderForCurrentUser');
 //     return data;

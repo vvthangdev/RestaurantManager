@@ -7,7 +7,7 @@ import classes from "./ordersManagementPage.module.css";
 import Title from "../../components/Title/Title";
 import Search from "../../components/Search/Search";
 import Price from "../../components/Price/Price";
-import { FaTrash, FaEdit } from 'react-icons/fa';
+import { FaTrash, FaEdit, FaSearch } from 'react-icons/fa';
 import HeaderFoodsAdminPage from "../../components/HeaderFoodsAdmin/HeaderAdmin";
 import { deleteAdminById, getAllAdmins, searchAdmin } from "../../services/adminService";
 import { deleteTableByTableNumber, getAllTables } from "../../services/tableService";
@@ -23,13 +23,7 @@ const OrdersManagementPage = () => {
             setOrders(orders);
         });
     }, [searchTerm]);
-    // const NotFound = () => {
-    //     if(admins && admins.length > 0) return;
-    //     return (<NotFound linkRoute="/admin/accounts" linkText="Show All" />)
-    //     // ) : (
-    //     //     <NotFound linkRoute="/dashboard" linkText="Back to dashboard!" />
-    //     // );
-    // };
+
     const deleteOrder = async order => {
         const confirmed = window.confirm(`Bạn có muốn xóa đơn đặt bàn số ${order.id}?`);
         if(!confirmed) return;
@@ -55,7 +49,7 @@ const OrdersManagementPage = () => {
             <div className={classes.container}>
                 <div className={classes.list}>
 
-                    <Title title = "Quản lý đơn hàng" margin = "1rem auto" />
+                    <Title title = "Quản lý bàn đặt" margin = "1rem auto" />
                     {/* <Search 
                         searchRoute="/admin/accounts/"
                         defaultRoute="/admin/accounts"
@@ -75,6 +69,7 @@ const OrdersManagementPage = () => {
                         <div>Thời gian</div>
                         <div>Trạng thái</div>
                         <div>Sửa/Xóa</div>
+                        <div>Chi tiết</div>
                     </div>
                     {orders &&
                         orders.map(order => (
@@ -89,6 +84,9 @@ const OrdersManagementPage = () => {
                                 <div className={classes.actions}>
                                     <Link to={'/admin/editorder/' + order.id} ><FaEdit className={classes.edit}/></Link>
                                     <Link onClick={() => deleteOrder(order)} ><FaTrash className={classes.delete}/></Link>
+                                </div>
+                                <div className={classes.actions}>
+                                    <Link to={'/admin/orderinfordetail/' + order.id} ><FaSearch className={classes.detail}/></Link>
                                 </div>
                             </div>
                         ))

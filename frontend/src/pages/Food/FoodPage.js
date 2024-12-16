@@ -25,11 +25,13 @@ export default function FoodPage(){
         if(quantity){
             addFoodToCart({
                 id : id,
+                name : food.name,
                 quantity : quantity,
             });
         }else {
            addFoodToCart({
                 id : id,
+                name : food.name,
                 quantity : 1,
             }); 
         }

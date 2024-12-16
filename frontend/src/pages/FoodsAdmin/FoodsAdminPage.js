@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { deleteFoodById, getAll, search } from "../../services/foodService";
+import { deleteFoodById, getAll, getAllByAdmin, search, searchByAdmin } from "../../services/foodService";
 import NotFound from "../../components/NotFound/NotFound";
 import { toast, ToastContainer } from "react-toastify";
 import classes from './foodsAdminPage.module.css';
@@ -16,7 +16,7 @@ const FoodAdminPage = () => {
     const {searchTerm} = useParams();
 
     useEffect(() => {
-        const loadFoods = searchTerm ? search(searchTerm) : getAll();
+        const loadFoods = searchTerm ? searchByAdmin(searchTerm) : getAllByAdmin();
         loadFoods.then(foods => {
             setFoods(foods);
             //console.log(foods);

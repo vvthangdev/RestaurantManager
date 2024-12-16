@@ -21,6 +21,44 @@ export const getById = async (foodId) => {
     console.log(data);
     return data;
 };
+export const getAllByAdmin = async () => {
+    const res = await axios.get('/api/admin/menu').catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
+    return res.data.foods;
+};
+
+export const searchByAdmin = async (searchTerm) => {
+    const { data } = await axios.get(`/api/admin/menu/search/${searchTerm}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
+    return data;
+};
+// export const getAllTags = async () => sample_tags;
+// export const getAllByTag = async tag => {
+//     if(tag === "All") return getAll();
+//     return sample_foods.filter(item => item.tags?.includes(tag));
+// };
+
+export const getByIdAdmin = async (foodId) => {
+    const {data} = await axios.get(`/api/admin/menu/food/${foodId}`).catch(error => {
+    if (error.response && error.response.status === 401) {
+        alert("Bạn không có đủ quyền để truy nhập trang này!");
+        window.location.href = '/menu';
+        localStorage.removeItem('admin');
+    }
+  });
+    console.log(data);
+    return data;
+};
 
 export const deleteFoodById = async (foodId) => {
     const {data} = await axios.delete(`/api/admin/deletefood/${foodId}`).catch(error => {
@@ -34,7 +72,9 @@ export const deleteFoodById = async (foodId) => {
 }
 
 export const updateFood = async (foodId, food) => {
-    await axios.put(`/api/admins/updatefood/${foodId}`, food).catch(error => {
+    console.log(foodId);
+    console.log(food);
+    await axios.put(`/api/admin/updatefood/${foodId}`, food).catch(error => {
     if (error.response && error.response.status === 401) {
         alert("Bạn không có đủ quyền để truy nhập trang này!");
         window.location.href = '/menu';

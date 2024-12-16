@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import classes from './header.module.css'
+import { FaShoppingCart } from 'react-icons/fa'
 export default function Header(){
 
     return <header className= {classes.header}>
@@ -35,6 +36,12 @@ export default function Header(){
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
                     Đặt bàn
+                </NavLink>
+                <NavLink
+                    to="/ordertemp"
+                    className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                    <FaShoppingCart size={24} />
                 </NavLink>
             </nav>
         </div>

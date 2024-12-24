@@ -31,7 +31,6 @@ app.use(express.urlencoded({ extended: true })); // Parse các request có nội
 app.use("/api", foodRoutes);
 app.use("/api", adminRoutes);
 
-
 // app.use("/api/auth", userRoutes);
 
 app.use("/tables", tableRouter);

@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Tilt+Warp&display=swap');
+
+.infor_wrapper {
+    background: #f8f8f8;
+    
+}
+
+.infor_content {
+    padding: 2rem 0;
+}
+
+.infor_wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.infor_box {
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF;
+    border: 0.1rem solid #EFEFEF;
+    border-radius: 1rem;
+    padding: 1.2rem 1.2rem 1.2rem 2.5rem;
+    margin-bottom: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.infor_box_left {
+
+    display: flex;
+
+    flex-direction: column;
+    width: 60%;
+    margin-right: 2rem;
+}
+
+.infor_box_left_title1 {
+    font-size: 2.3rem;
+    line-height: 110%;
+    font-family: "Tilt Warp";
+    letter-spacing: -0.02em;
+    color: #1B4E30;
+
+}
+
+.infor_box_left_des {
+    font-size: 1.3rem;
+    line-height: 100%;
+    font-family: "Plus Jakarta Sans";
+    color: #666666;
+    margin-bottom: 1rem;
+}
+
+.infor_box_right {
+    width: 37%;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.test {
+    width: 100%;
+    display: flex;
+}
+
+.infor_box_right_image {
+    display: block;
+    width: 100%;
+}
+
+.infor_box_right_image i {
+    display: block;
+    position: relative;
+    padding-top: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.infor_box_right_image img {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+
+}

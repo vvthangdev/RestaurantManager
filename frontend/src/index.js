@@ -4,12 +4,31 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
+import './axiosConfig'
+import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './hooks/useAuth';
+import 'react-toastify/dist/ReactToastify.css';
+import './interceptors/authInterceptors';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <AuthProvider>
+
+        <App/>
+        <ToastContainer
+                position="bottom-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+        />
+      </AuthProvider>
     </BrowserRouter>
     
   </React.StrictMode>

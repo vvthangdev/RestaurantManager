@@ -3,6 +3,8 @@ import { getAll, search } from "../../services/foodService";
 import Thumbnails from "../../components/Thumbnails/Thumbnails";
 import { useParams } from "react-router-dom";
 import Search from "../../components/Search/Search";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 
 const initialState = {foods : []};
 const reducer = (state, action) => {
@@ -25,8 +27,10 @@ export default function HomePage(){
     }, [searchTerm]); //useEffect tranh goi API moi khi render, tranh anh huong render chinh
     return(
         <>
+            <Header/>
             <Search/>
             <Thumbnails foods = {foods} />
+            <Footer/>
         </>
     );
 }

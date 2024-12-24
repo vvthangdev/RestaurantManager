@@ -8,14 +8,15 @@ export default function Thumbnails({foods}){
         
         <div>
             <div className={classes.classify}>
-                <div className={classes.name_classify}>Món ăn</div>            
+                <div className={classes.name_classify}>Món ăn và đồ uống</div>            
                 <ul className={classes.list}>
                     {foods.map(food => (
+            
                         <li key = {food.id}>
                             <Link to = {`/menu/food/${food.id}`}>
                                 <img
                                     className={classes.image}
-                                    src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}
+                                    src = {food.image}
                                     alt={food.name} 
                                 />
                                 <div className={classes.infor}>
@@ -34,7 +35,7 @@ export default function Thumbnails({foods}){
                     ))}
                 </ul>
             </div>
-            <div className={classes.classify}>
+            {/* <div className={classes.classify}>
                 <div className={classes.name_classify}>Combo</div>            
                 <ul className={classes.list}>
                     {foods.map(food => (
@@ -42,7 +43,7 @@ export default function Thumbnails({foods}){
                             <Link to = {`/menu/food/${food.id}`}>
                                 <img
                                     className={classes.image}
-                                    src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}
+                                    src = {`${process.env.PUBLIC_URL}${food.image}`}
                                     alt={food.name} 
                                 />
                                 <div className={classes.infor}>
@@ -69,7 +70,7 @@ export default function Thumbnails({foods}){
                             <Link to = {`/menu/food/${food.id}`}>
                                 <img
                                     className={classes.image}
-                                    src = {`${process.env.PUBLIC_URL}${food.imgUrl}`}
+                                    src = {`${process.env.PUBLIC_URL}${food.image}`}
                                     alt={food.name} 
                                 />
                                 <div className={classes.infor}>
@@ -87,7 +88,7 @@ export default function Thumbnails({foods}){
                         </li>
                     ))}
                 </ul>
-            </div>
+            </div> */}
         </div>
     );
 }

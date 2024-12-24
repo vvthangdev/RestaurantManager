@@ -1,13 +1,13 @@
 import React from 'react'
 import {Link, NavLink} from 'react-router-dom'
 import classes from './header.module.css'
-import Navbar from '../Navbar/Navbar'
+import { FaShoppingCart } from 'react-icons/fa'
 export default function Header(){
 
     return <header className= {classes.header}>
         <div className={classes.container}>
-            <Link to = '/' className = {classes.logo}>
-                <img src = {`${process.env.PUBLIC_URL}icons/logo-hust.png`} alt = "HUST"/>
+            <Link to = '/menu' className = {classes.logo}>
+                <img src = {`${process.env.PUBLIC_URL}/icons/logo-hust.png`} alt = "HUST"/>
                 <span>Quán nhậu Bách Khoa</span>
                 
             </Link>
@@ -17,25 +17,31 @@ export default function Header(){
                     to="/menu"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    MENU    
+                    Thực đơn   
                 </NavLink>
                 <NavLink
                     to="/contact"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    CONTACT
+                    Liên hệ
                 </NavLink>
                 <NavLink
                     to="/infor"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    INFOR
+                    Thông tin
                 </NavLink>
                 <NavLink
-                    to="/preorder"
+                    to="/order"
                     className={({ isActive }) => (isActive ? classes.active : "")}
                 >
-                    ORDER
+                    Đặt bàn
+                </NavLink>
+                <NavLink
+                    to="/ordertemp"
+                    className={({ isActive }) => (isActive ? classes.active : "")}
+                >
+                    <FaShoppingCart size={24} />
                 </NavLink>
             </nav>
         </div>

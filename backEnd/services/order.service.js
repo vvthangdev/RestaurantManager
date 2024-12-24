@@ -4,7 +4,7 @@ const sequelize = require("../config/db.config");
 const OrderDetail = require("../models/order_detail.model");
 const ReservationTable = require("../models/reservation_table.model");
 const TableInfo = require("../models/table_info.model");
-const ItemOrder = require("../models/item_order.model")
+const ItemOrder = require("../models/item_order.model");
 
 // 1. Cấu hình dotenv để đọc biến môi trường từ .env
 require("dotenv").config();
@@ -13,7 +13,7 @@ require("dotenv").config();
 const reservationDurationMinutes =
   parseInt(process.env.TABLE_RESERVATION_DURATION_MINUTES) || 120; // Giả sử 120 phút là giá trị mặc định
 
-async function createOrder(orderData, { transaction} = {}) {
+async function createOrder(orderData, { transaction } = {}) {
   try {
     const newOrder = new OrderDetail({
       ...orderData,
@@ -57,7 +57,6 @@ const checkAvailableTables = async (startTime, endTime, options = {}) => {
   }
 };
 
-
 // Hàm tạo đặt bàn
 // async function createReservation(reservationData) {
 //   try {
@@ -88,17 +87,21 @@ const checkAvailableTables = async (startTime, endTime, options = {}) => {
 async function createReservations(reservedTables, { transaction }) {
   try {
     if (!reservedTables || reservedTables.length === 0) {
-      throw new Error('No tables to reserve');
+      throw new Error("No tables to reserve");
     }
 
     const createdReservations = [];
 
     // Lặp qua từng bàn trong reservedTables và tạo reservation
     for (let reservationData of reservedTables) {
-      const { reservation_id, table_id, start_time, people_assigned } = reservationData;
+      const { reservation_id, table_id, start_time, people_assigned } =
+        reservationData;
 
       const end_time = new Date(start_time);
-      end_time.setMinutes(end_time.getMinutes() + parseInt(process.env.RESERVATION_DURATION_MINUTES) || 120);
+      end_time.setMinutes(
+        end_time.getMinutes() +
+          parseInt(process.env.RESERVATION_DURATION_MINUTES) || 120
+      );
 
       const table = await TableInfo.findOne({
         where: { table_number: table_id },
@@ -110,7 +113,9 @@ async function createReservations(reservedTables, { transaction }) {
       }
 
       if (table.capacity < people_assigned) {
-        throw new Error(`Table ${table_id} does not have enough capacity for ${people_assigned} people`);
+        throw new Error(
+          `Table ${table_id} does not have enough capacity for ${people_assigned} people`
+        );
       }
 
       // Tạo đối tượng reservation mới
@@ -129,11 +134,10 @@ async function createReservations(reservedTables, { transaction }) {
 
     return createdReservations;
   } catch (error) {
-    console.error('Error creating reservations:', error);
-    throw new Error('Error saving the Reservations');
+    console.error("Error creating reservations:", error);
+    throw new Error("Error saving the Reservations");
   }
 }
-
 
 const updateTable = async (table_number, updatedData) => {
   // Tìm người dùng theo username
@@ -172,8 +176,7 @@ async function getTableByTableNumber(table_number) {
   }
 }
 
-
-async function createItemOrders(itemOrders, { transaction} = {}) {
+async function createItemOrders(itemOrders, { transaction } = {}) {
   try {
     // Kiểm tra nếu không có item nào để tạo
     if (!itemOrders || itemOrders.length === 0) {
@@ -190,31 +193,31 @@ async function createItemOrders(itemOrders, { transaction} = {}) {
     throw new Error("Error saving item orders");
   }
 }
-async function updateOrder(id, data) { 
-  try { 
+async function updateOrder(id, data) {
+  try {
     const order = await OrderDetail.findOne({ where: { id } });
     if (!order) {
       return null;
     }
-    const newOrder = Object.assign(order, {id, ...data});
+    const newOrder = Object.assign(order, { id, ...data });
     await newOrder.save();
     return newOrder;
-  } catch(e) { 
+  } catch (e) {
     console.log(e);
     throw new Error("Error while updating order");
   }
 }
-async function updateOrderNew(id, data) { 
-  try { 
+async function updateOrderNew(id, data) {
+  try {
     const order = await OrderDetail.findOne({ where: { id } });
     if (!order) {
       return null;
     }
     await order.update({
-        status : data.status,
+      status: data.status,
     });
     return order;
-  } catch(e) { 
+  } catch (e) {
     console.log(e);
     throw new Error("Error while updating order");
   }
@@ -227,5 +230,5 @@ module.exports = {
   getTableByTableNumber,
   createItemOrders,
   updateOrder,
-  updateOrderNew
+  updateOrderNew,
 };

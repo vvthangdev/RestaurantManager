@@ -6,7 +6,7 @@ const { createOrderUserInfo } = require("../services/order_user_info.service");
 const OrderUserInfo = require("../models/order_user_info.model");
 const ReserTable = require("../models/reservation_table.model");
 const ItemOrders = require("../models/item_order.model");
-const emailService = require("../services/sendmail.service")
+const emailService = require("../services/sendmail.service");
 
 const { Sequelize } = require("sequelize");
 
@@ -93,8 +93,8 @@ const getAllOrdersOfCustomer = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-    console.log(3);
-    console.log(req.body);
+  console.log(3);
+  console.log(req.body);
   const transaction = await sequelize.transaction(); // Khởi tạo transaction
   try {
     let { email, name, phone, start_time, num_people, foods, ...orderData } =
@@ -192,7 +192,7 @@ const createOrder = async (req, res) => {
           phone: phone,
         });
       }
-      console.log(email)
+      console.log(email);
 
       await emailService.sendOrderConfirmationEmail(email, name, newOrder);
       // Commit transaction khi tất cả các thao tác thành công
@@ -371,7 +371,7 @@ const createShipOrder = async (req, res) => {
 // };
 const getAllOrderInfo = async (req, res) => {
   try {
-    const { id } = req.params;  // Dữ liệu id lấy từ body của request
+    const { id } = req.params; // Dữ liệu id lấy từ body của request
 
     // Kiểm tra xem id có hợp lệ không
     if (!id) {
@@ -396,9 +396,8 @@ const getAllOrderInfo = async (req, res) => {
     // Trả về thông tin tìm được
     return res.status(200).json({
       reserTableInfo,
-      itemOrders
+      itemOrders,
     });
-
   } catch (error) {
     // Xử lý lỗi nếu có
     console.error("Error fetching order info:", error);

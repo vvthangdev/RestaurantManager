@@ -91,7 +91,7 @@ const login = async (req, res) => {
   // console.log(email);
   try {
     const user = await User.findOne({
-      where: { email: email }
+      where: { email: email },
     });
     // console.log(user);
 
@@ -265,8 +265,10 @@ const sendOTP = async (req, res) => {
     const { email } = req.body;
 
     // Validate the email format
-    if (!email || typeof email !== 'string' || !/\S+@\S+\.\S+/.test(email)) {
-      return res.status(400).json({ status: "Error", message: "Invalid email address" });
+    if (!email || typeof email !== "string" || !/\S+@\S+\.\S+/.test(email)) {
+      return res
+        .status(400)
+        .json({ status: "Error", message: "Invalid email address" });
     }
 
     // Call the Auth function
@@ -292,7 +294,6 @@ const sendOTP = async (req, res) => {
   }
 };
 
-
 module.exports = {
   getAllUsers,
   userInfo,
@@ -302,5 +303,5 @@ module.exports = {
   logout,
   updateUser,
   deleteUser,
-  sendOTP
+  sendOTP,
 };

@@ -45,7 +45,6 @@
 //   userController.sendOTP
 // )
 
-
 // //for data_samples
 // const genarateTokenResponse = user => {
 //     const token = jwt.sign({

@@ -8,19 +8,18 @@ async function createTable(tableData) {
 }
 
 const getTableByTableNumber = async (table_number) => {
-    try{
-        const table = await TableInfo.findOne({
-            where : {table_number : table_number}
-        });
-        console.log(table['dataValues']);
-        return table;
-    }catch(error){
-        throw new Error("FAILED: " + error.message);
-    }
-}
+  try {
+    const table = await TableInfo.findOne({
+      where: { table_number: table_number },
+    });
+    console.log(table["dataValues"]);
+    return table;
+  } catch (error) {
+    throw new Error("FAILED: " + error.message);
+  }
+};
 const updateTable = async (table_number, updatedTable) => {
-  
-  try{
+  try {
     const table = await TableInfo.findOne({ where: { table_number } });
 
     if (!table) {
@@ -28,37 +27,36 @@ const updateTable = async (table_number, updatedTable) => {
     }
 
     await table.update({
-        capacity: updatedTable.capacity || table.capacity,
+      capacity: updatedTable.capacity || table.capacity,
     });
     return {
-        message: "Table updated successfully",
-        data: table,
+      message: "Table updated successfully",
+      data: table,
     };
-  }catch (error) {
-      return {
-          message: "Error updating table",
-          error: error.message,
-      };
+  } catch (error) {
+    return {
+      message: "Error updating table",
+      error: error.message,
+    };
   }
-  
 };
-const deleteTableByTableNumber = async (table_number) =>{
-  try{
-        const table = await TableInfo.findOne({
-            where : {table_number : table_number}
-        });
-        if(!table){
-            throw new Error("Table not found");
-        }
-        await TableInfo.destroy({
-          where: { table_number : table_number },
-        });
-        return 1;
-    }catch (error) {
-        console.log("Error deleting table: ", error);
-        throw new Error("An error occurred while deleting the table.");
+const deleteTableByTableNumber = async (table_number) => {
+  try {
+    const table = await TableInfo.findOne({
+      where: { table_number: table_number },
+    });
+    if (!table) {
+      throw new Error("Table not found");
     }
-}
+    await TableInfo.destroy({
+      where: { table_number: table_number },
+    });
+    return 1;
+  } catch (error) {
+    console.log("Error deleting table: ", error);
+    throw new Error("An error occurred while deleting the table.");
+  }
+};
 // async function getTableByTableNumber(table_number) {
 //   try {
 //     // Truy vấn cơ sở dữ liệu để tìm bản ghi có table_number tương ứng

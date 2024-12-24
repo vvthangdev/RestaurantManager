@@ -1,0 +1,13 @@
+# Thư mục node_modules
+node_modules/
+
+# Thư mục build
+dist/
+build/
+
+# File lock
+*.lock
+
+# File log
+*.log
+logs/
